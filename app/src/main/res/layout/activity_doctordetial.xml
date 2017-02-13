@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <com.mm.kyys.Wighet.XlTitle
+        android:id="@+id/doctordetial_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </com.mm.kyys.Wighet.XlTitle>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@mipmap/bg_doctordetial"
+        >
+
+        <com.mm.kyys.View.CircularImage
+            android:id="@+id/doctordetial_iv_photo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/photo">
+        </com.mm.kyys.View.CircularImage>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/black_text"
+            android:textSize="18sp"
+            android:text="段志宇"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/black_text_small"
+            android:textSize="15sp"
+            android:text="主任医师/教授"
+            android:layout_marginTop="5dp"/>
+
+
+
+        <Button
+            android:id="@+id/doctordetial_btn_gh"
+            android:layout_height="30dp"
+            style="@style/button_style"
+            android:layout_gravity="center"
+            android:text="@string/guahao"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3e3e3"
+            android:layout_marginTop="30dp"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        style="@style/black_text_small"
+        android:textSize="18sp"
+        android:text="@string/yishengshanchang"
+        android:gravity="left"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        style="@style/black_text_small_grey"
+        android:textSize="15sp"
+        android:text="@string/yishengshanchang_text"
+        android:gravity="left"
+        />
+
+</LinearLayout>

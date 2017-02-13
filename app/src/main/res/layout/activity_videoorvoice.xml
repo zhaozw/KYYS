@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#000000">
+
+        <com.hyphenate.media.EMOppositeSurfaceView
+            android:id="@+id/videoorvoice_sf_big"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <com.hyphenate.media.EMLocalSurfaceView
+            android:id="@+id/videoorvoice_sf_small"
+            android:layout_width="70dp"
+            android:layout_height="90dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/videoorvoice_layout_response"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/videoorvoice_tv_info_response"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:visibility="gone"/>
+                <ImageView
+                    android:id="@+id/videoorvoice_iv_userphoto_response"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/videoorvoice_btn_hungup_response"
+                    style="@style/button_style_red"
+                    android:text="@string/guaduan"/>
+                <Button
+                    android:id="@+id/videoorvoice_btn_ok_response"
+                    style="@style/button_style"
+                    android:text="@string/tongyi"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/videoorvoice_layout_request"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/videoorvoice_tv_info_request"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="111"
+                    android:visibility="gone"/>
+                <ImageView
+                    android:id="@+id/videoorvoice_iv_userphoto_request"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/videoorvoice_btn_hungup_request"
+                    style="@style/button_style_red"
+                    android:text="@string/guaduan"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/videoorvoice_layout_connectioned"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:gravity="bottom"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="right">
+
+                <Button
+                    android:id="@+id/videoorvoice_btn_changecamera"
+                    style="@style/button_style"
+                    android:layout_width="100dp"
+                    android:text="@string/qiehuanshexiangtou"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom"
+                android:weightSum="2"
+                >
+                <Button
+                    android:id="@+id/videoorvoice_btn_shutdown"
+                    style="@style/button_style_red"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/guaduan"
+                    android:layout_weight="1"
+                    />
+                <Button
+                    android:id="@+id/videoorvoice_btn_speakerphone"
+                    style="@style/button_style"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/mianti"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <com.mm.kyys.Wighet.XlTitle
+            android:id="@+id/videoorvoice_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            />
+    </FrameLayout>
+
+</RelativeLayout>

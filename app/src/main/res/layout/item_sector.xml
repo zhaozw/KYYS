@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="#fff">
+
+
+    <LinearLayout
+        android:id="@+id/item_sector_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/item_sector_iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/layout_margin"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/item_sector_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/keshi"
+            style="@style/black_text"/>
+
+    </LinearLayout>
+</LinearLayout>

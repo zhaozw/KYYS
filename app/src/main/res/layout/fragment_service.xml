@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:gravity="center"
+    >
+<!--    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/app_logo"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="寻医待开发"
+        android:textColor="#000"
+        android:textSize="18sp"/>-->
+
+    <ScrollView
+        android:id="@+id/firstpage_sv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@mipmap/pic_jk_1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@mipmap/pic_jk_2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@mipmap/pic_jk_3"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@mipmap/pic_jk_4"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@mipmap/pic_jk_5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@mipmap/pic_jk_6"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@mipmap/pic_jk_1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@mipmap/pic_jk_2"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

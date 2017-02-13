@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/diseaseclasstfy_framelayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="150dp"
+        android:background="@color/btn_answer_normal"
+        android:orientation="horizontal">
+
+
+        <com.mm.kyys.View.CircleImageView
+            android:id="@+id/diseaseclasstfy_ci"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#e3e3e3"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:id="@+id/diseaseclasstfy_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:text="类别"/>
+    </LinearLayout>
+</LinearLayout>
