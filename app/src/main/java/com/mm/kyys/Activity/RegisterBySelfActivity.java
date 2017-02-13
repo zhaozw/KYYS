@@ -76,6 +76,7 @@ public class RegisterBySelfActivity extends BaseActivity{
     private void inevent() {
 
         title.setText(getResources().getString(R.string.yuyueguahao));
+        title.setleftText(R.string.shouye);
         title.setLeftVisibility(true);
         title.setRightVisibility(false);
         title.setleftText(R.string.fanhui);
