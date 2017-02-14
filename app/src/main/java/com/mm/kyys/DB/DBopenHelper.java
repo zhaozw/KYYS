@@ -30,12 +30,15 @@ public class DBopenHelper extends SQLiteOpenHelper {
             + ClassifyDao.CLASSIFY_PATH+ " varchar(255));";
 
 
+
+
     public DBopenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
+
     public static DBopenHelper getIntance(Context context){
         if (instance==null){
-            instance = new DBopenHelper(context.getApplicationContext(),"classify.db",null,1);
+            instance = new DBopenHelper(context.getApplicationContext(),"kyys.db",null,1);
         }
         return instance;
     }

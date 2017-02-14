@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.mimei.sq.Model.Node;
-import com.mimei.sq.Model.Question;
-import com.mimei.sq.R;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -41,76 +37,14 @@ public class DBManager {
         return manager;
     }
 
-    /**
-     * 将raw文件夹下的数据库导入到手机存储空间
-     *
-     * @param context  上下文
-     * @param db_path   导入到手机的存储路径  .../myDBfile/
-     * @return  数据库对象
-     * @author xl
-     */
-    public SQLiteDatabase copyDBFrom(Context context, String db_path) {
 
-        try {
-            InputStream is = context.getResources().openRawResource(R.raw.exam); // 欲导入的数据库
-            //如果目标数据库在手机上不存在则导入
-            if (!(new File(db_path).exists())) {
-
-                FileOutputStream fos;
-                fos = new FileOutputStream(db_path);
-                byte[] buffer = new byte[40000];
-                int count = 0;
-                while ((count = is.read(buffer)) > 0) {
-                    fos.write(buffer, 0, count);
-                }
-                fos.close();
-                is.close();
-            }
-        } catch (FileNotFoundException e) {
-            Log.i("xl", "FileNotFoundException");
-            e.printStackTrace();
-        } catch (IOException e) {
-            Log.i("xl", "IOException");
-            e.printStackTrace();
-        }
-        db_question = context.openOrCreateDatabase(db_path,
-                Context.MODE_PRIVATE, null);
-        return db_question;
-    }
 
     public SQLiteDatabase getQuestionDB(){
         return db_question;
     }
 
 
-    synchronized public List<Question> QueryQuestion(SQLiteDatabase db, String table_name, String sql_where, String[] param){
-
-        List<Question> list_question = new ArrayList<Question>();
-
-        int count = 0;
-        Cursor cursor;
-        cursor = db.query(table_name, null,sql_where, param, null, null, null);
-
-        while (cursor.moveToNext()) {
-            count++;
-            Question question = new Question();
-            question.setID(cursor.getString(cursor.getColumnIndex("ID")));
-            question.setZHANGJIE(cursor.getString(cursor.getColumnIndex("ZHANGJIE")));
-            question.setQUESTION(cursor.getString(cursor.getColumnIndex("QUESTION")));
-            question.setANSS(cursor.getString(cursor.getColumnIndex("ANSS")));
-            question.setANS(cursor.getString(cursor.getColumnIndex("ANS")));
-            question.setBMP(cursor.getString(cursor.getColumnIndex("BMP")));
-            question.setTXBZ(cursor.getString(cursor.getColumnIndex("TXBZ")));
-            question.setYCBZ(cursor.getString(cursor.getColumnIndex("YCBZ")));
-            question.setFLASH(cursor.getString(cursor.getColumnIndex("FLASH")));
-            question.setSTATE(cursor.getString(cursor.getColumnIndex("STATE")));
-            list_question.add(question);
-        }
-        return list_question;
-    }
-
-
-    synchronized public void SaveClassify_list(List<Node> list_node, SQLiteDatabase database_writable) {
+    /*synchronized public void SaveClassify_list(List<Node> list_node, SQLiteDatabase database_writable) {
         Log.i("xl", "保存分类");
         if (database_writable.isOpen()) {
             Log.i("xl", "数据库已经打开了");
@@ -139,7 +73,7 @@ public class DBManager {
         }
     }
 
-    //查询可以不可以不同步  synchronized
+    //查询可不可以不同步？  synchronized
     public List<Node> QuerySonClassify(String parentid, SQLiteDatabase database_readable) {
         List<Node> list = new ArrayList<Node>();
         //SQLiteDatabase db = helper.getReadableDatabase();
@@ -151,8 +85,8 @@ public class DBManager {
         // 第五个参数String:对查询的结果进行分组
         // 第六个参数String：对分组的结果进行限制
         // 第七个参数String：对查询的结果进行排序
-        /*Cursor cursor = db.query(ClassifyDao.CLASSIFY_TABLE_NAME, new String[] { ClassifyDao.CLASSIFY_NAME,
-                "name" }, "id=?", new String[] { "1" }, null, null, null);*/
+        *//*Cursor cursor = db.query(ClassifyDao.CLASSIFY_TABLE_NAME, new String[] { ClassifyDao.CLASSIFY_NAME,
+                "name" }, "id=?", new String[] { "1" }, null, null, null);*//*
 
         String[] arr = {parentid};
         Cursor cursor;
@@ -172,7 +106,7 @@ public class DBManager {
             list.add(new Node(c_cateid, c_displayorder, c_name, c_pricerange, c_parentid, c_layer, c_haschild, c_path));
         }
         return list;
-    }
+    }*/
 
     synchronized public void closeDB() {
         if (helper != null) {

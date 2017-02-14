@@ -19,7 +19,7 @@ public class ClassifyDao {
     public static final String CLASSIFY_HASCHILD = "haschild";
     public static final String CLASSIFY_PATH = "path";
 
-    public ClassifyDao(Context context){
+    public ClassifyDao(){
 
     }
 

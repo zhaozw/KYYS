@@ -6,17 +6,32 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.mm.kyys.Adapter.SelectDoctorAdapter;
 import com.mm.kyys.Model.Doctor;
 import com.mm.kyys.R;
+import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
+import com.mm.kyys.Util.RestClient;
 import com.mm.kyys.Wighet.XlTitle;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by 27740 on 2017/1/16.
@@ -30,7 +45,7 @@ public class SelectDoctorActvity extends Activity {
     private SelectDoctorAdapter adapter;
     private XlTitle title;
     private List<Doctor> list_doctor = new ArrayList<Doctor>();
-
+    private AsyncHttpClient client = new AsyncHttpClient();
 
     private String setion_name;
 
@@ -100,6 +115,23 @@ public class SelectDoctorActvity extends Activity {
         list_doctor.add(new Doctor("段志宇","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",6,"各种疾病诊断","主任医师"));
         list_doctor.add(new Doctor("段志宇","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",6,"各种疾病诊断","主任医师"));
         list_doctor.add(new Doctor("段志宇","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",6,"各种疾病诊断","主任医师"));
+
+        RequestParams params = new RequestParams();
+        RestClient.get("sel_Department.ashx",params,new JsonHttpResponseHandler(){
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.i("xl", "科室信息获取失败");
+
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                Log.i("xl", "科室信息："+response);
+
+            }
+        });
+
     }
 
 }
