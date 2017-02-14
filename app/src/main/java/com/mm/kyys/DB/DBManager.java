@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.mm.kyys.Model.User;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -43,6 +45,17 @@ public class DBManager {
         return db_question;
     }
 
+
+    synchronized public void SaveUser(List<User> list_user,SQLiteDatabase database_writable){
+        if (database_writable.isOpen()){
+            database_writable.delete(UserDao.USER_TABLE_NAME,null,null);
+            for (User user : list_user){
+                ContentValues values = new ContentValues();
+                values.put(UserDao.USER_NAME,user.getName());
+
+            }
+        }
+    }
 
     /*synchronized public void SaveClassify_list(List<Node> list_node, SQLiteDatabase database_writable) {
         Log.i("xl", "保存分类");

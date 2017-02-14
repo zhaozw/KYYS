@@ -29,7 +29,13 @@ public class DBopenHelper extends SQLiteOpenHelper {
             + ClassifyDao.CLASSIFY_HASCHILD + " integer,"
             + ClassifyDao.CLASSIFY_PATH+ " varchar(255));";
 
-
+    public static String USER_TABLE_CREAT = "creat table "
+            + UserDao.USER_TABLE_NAME + "("
+            + UserDao.USER_NAME + " varchar(255),"
+            + UserDao.USER_AGE + " varchar(255),"
+            + UserDao.USER_NICK + " varchar(255),"
+            + UserDao.USER_PHOTO + " varchar(255),"
+            + UserDao.USER_SEX + "varchar(255));";
 
 
     public DBopenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -47,6 +53,7 @@ public class DBopenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, "建表");
         db.execSQL(CLASSIFY_TABLE_CREAT);
+        db.execSQL(USER_TABLE_CREAT);
     }
 
     @Override

@@ -8,24 +8,32 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.mm.kyys.Adapter.SectionAdapter;
 import com.mm.kyys.Adapter.SectionAdapter.OnSectionItemClickListener;
 import com.mm.kyys.Adapter.SectorAdapter;
 import com.mm.kyys.Model.Section;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.MyUtil;
+import com.mm.kyys.Util.RestClient;
 import com.mm.kyys.Wighet.XlTitle;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by 27740 on 2017/1/13.
@@ -126,6 +134,22 @@ public class RegisterBySelfActivity extends BaseActivity{
         list_section.add(new Section("妇科",18));
         list_section.add(new Section("外科",19));
         list_section.add(new Section("呼吸内科",20));
+
+        RequestParams params = new RequestParams();
+        RestClient.get("sel_Department.ashx",params,new JsonHttpResponseHandler(){
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.i("xl", "科室信息获取失败");
+
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                Log.i("xl", "科室信息："+response);
+
+            }
+        });
     }
 
     @Override

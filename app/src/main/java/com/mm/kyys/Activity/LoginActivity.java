@@ -14,12 +14,19 @@ import com.alibaba.fastjson.JSON;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.mm.kyys.Model.User;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
+import com.mm.kyys.Util.RestClient;
 import com.mm.kyys.Util.SharedPreferencesManager;
 import com.mm.kyys.Wighet.XlProgressDialog;
+
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by 27740 on 2017/1/5.
@@ -82,7 +89,7 @@ public class LoginActivity extends Activity {
     }
 
     private void Login(){
-        pd = new XlProgressDialog(oThis,true,getResources().getString(R.string.dengluzhong));
+        /*pd = new XlProgressDialog(oThis,true,getResources().getString(R.string.dengluzhong));
         //pd.show();
         EMClient.getInstance().login(et_username.getText().toString().trim(), et_pwd.getText().toString().trim(), new EMCallBack() {
             @Override
@@ -122,11 +129,35 @@ public class LoginActivity extends Activity {
             public void onProgress(int i, String s) {
 
             }
+        });*/
+        String account = et_username.getText().toString().trim();
+        String password = et_pwd.getText().toString().trim();
+        RequestParams params = new RequestParams();
+        params.add("account",account);
+        params.add("password",password);
+        RestClient.get("sel_User.ashx",params,new JsonHttpResponseHandler(){
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.i("xl", "登录失败");
+
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                Log.i("xl", "登录信息："+response);
+
+            }
         });
     }
 
     private void Regist(){
-        new Thread(new Runnable() {
+
+        startActivity(new Intent(LoginActivity.this,RegisterAccountActivity.class));
+        oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
+
+
+/*        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -136,7 +167,7 @@ public class LoginActivity extends Activity {
                     Log.i(TAG, "注册失败："+e.getErrorCode()+"--"+e.getMessage());
                 }
             }
-        }).start();
+        }).start();*/
     }
 
 }

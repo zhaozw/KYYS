@@ -117,17 +117,18 @@ public class SelectDoctorActvity extends Activity {
         list_doctor.add(new Doctor("段志宇","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",6,"各种疾病诊断","主任医师"));
 
         RequestParams params = new RequestParams();
-        RestClient.get("sel_Department.ashx",params,new JsonHttpResponseHandler(){
+        params.add("did","3");
+        RestClient.get("sel_Doctor.ashx.ashx",params,new JsonHttpResponseHandler(){
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                Log.i("xl", "科室信息获取失败");
+                Log.i("xl", "医生列表信息获取失败");
 
             }
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
-                Log.i("xl", "科室信息："+response);
+                Log.i("xl", "医生列表："+response);
 
             }
         });

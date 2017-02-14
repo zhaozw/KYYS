@@ -79,4 +79,13 @@
     <string name="wodeyiyue">我的预约</string>
     <string name="shezhi">设置</string>
     <string name="dengluzhong">登录中...</string>
+    <string name="tijiao">提交</string>
+    <string name="qszndyhm">请设置您的用户名</string>
+    <string name="szmm">设置密码（长度为6-16个字符）</string>
+    <string name="zcsrmm">再次输入密码</string>
+    <string name="yanzhenma">验证码</string>
+    <string name="fasongyanzhenma">发送验证码</string>
+    <string name="zcxxbwz">注册信息不完整</string>
+    <string name="mmsrnyz">密码输入不一致</string>
+    <string name="nsrdmmbfhyq">您输入的密码不符合要求</string>
 </resources>
