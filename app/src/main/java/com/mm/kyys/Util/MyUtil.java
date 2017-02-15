@@ -25,6 +25,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -178,7 +181,7 @@ public class MyUtil {
         return file_path;
     }
 
-    //准备播放视频铃声
+    //准备播放视频请求铃声
     public void initMediaPlayer() {
         mediaPlayer = new MediaPlayer();
 
@@ -192,7 +195,7 @@ public class MyUtil {
             e.printStackTrace();
         }
     }
-
+    //播放视频请求铃声
     public void playVideoRing(Activity oThis){
         audioManager = (AudioManager)oThis.getSystemService(Context.AUDIO_SERVICE);
         if(!mediaPlayer.isPlaying())
@@ -234,6 +237,22 @@ public class MyUtil {
         arr[1] = height;
         return arr;
     }
-
+    //时间转换为时间戳
+    public Date TimeToTimeStamp(){
+        String time = "2017-02-14T17:08:43";
+        time = time.replace("T"," ");
+        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Log.e("xl", "时间转换为时间戳:"+date.getTime());
+        String Time = format.format(date);
+        Log.e("xl", "日期+时间："+Time);
+        return date;
+    }
+    //时间戳转换为时间
 
 }

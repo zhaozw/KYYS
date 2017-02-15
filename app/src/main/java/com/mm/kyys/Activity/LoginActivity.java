@@ -130,6 +130,8 @@ public class LoginActivity extends Activity {
 
             }
         });*/
+        MyUtil.getIntance().TimeToTimeStamp();
+
         String account = et_username.getText().toString().trim();
         String password = et_pwd.getText().toString().trim();
         RequestParams params = new RequestParams();
