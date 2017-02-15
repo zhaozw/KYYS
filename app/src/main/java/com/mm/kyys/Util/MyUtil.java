@@ -253,6 +253,13 @@ public class MyUtil {
         Log.e("xl", "日期+时间："+Time);
         return date;
     }
-    //时间戳转换为时间
+
+    public void ActivityStartAmni(Activity oThis){
+        oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
+    }
+
+    public void ActivityStopAmni(Activity oThis){
+        oThis.overridePendingTransition(R.anim.fragment_slide_in_from_left,R.anim.fragment_slide_out_from_right);
+    }
 
 }

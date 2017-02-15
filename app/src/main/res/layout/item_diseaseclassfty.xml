@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
 
-        <com.mm.kyys.View.CircleImageView
+        <com.mm.kyys.View.CircularImage
             android:id="@+id/diseaseclasstfy_ci"
             android:layout_width="30dp"
             android:layout_height="30dp"

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.baidu.mapapi.map.Text;
+import com.mm.kyys.Model.Section;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.MyUtil;
 
@@ -25,7 +26,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
     private LayoutInflater inflater;
     private Activity oThis;
     private SectionAdapter.OnSectionItemClickListener onItemClickListener;
-    private List<String> list_data = new ArrayList();
+    private List<Section> list_data = new ArrayList();
 
     private List<Boolean> list_ischeck = new ArrayList<Boolean>();
 
@@ -38,7 +39,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
         this.onItemClickListener = onItemClickListener;
     }
 
-    public SectionAdapter(Activity oThis,List<String> list_data,List<Boolean> list_ischeck){
+    public SectionAdapter(Activity oThis, List<Section> list_data, List<Boolean> list_ischeck){
         this.oThis = oThis;
         this.list_data = list_data;
         this.list_ischeck = list_ischeck;
@@ -61,7 +62,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
         params.height = (int) arr[1]/10;
         holder.tv_section.setLayoutParams(params);*/
 
-        holder.tv_section.setText(list_data.get(position));
+        holder.tv_section.setText(list_data.get(position).getName());
         if (list_ischeck.get(position)){
             holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.colorGreen));
         }else{

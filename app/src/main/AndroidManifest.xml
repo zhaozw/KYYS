@@ -93,7 +93,7 @@
         </activity>
         <!--自助挂号-->
         <activity
-            android:name=".Activity.RegisterBySelfActivity"
+            android:name=".Activity.SelectSectionActivity"
             android:screenOrientation="portrait">
         </activity>
         <!--视频或语音通话-->
@@ -110,7 +110,7 @@
             android:screenOrientation="portrait"/>
         <!--挂号-->
         <activity
-            android:name=".Activity.RegisterActivity"
+            android:name=".Activity.PayActivity"
             android:screenOrientation="portrait"/>
         <!-- 显示下载大图页面 -->
         <activity

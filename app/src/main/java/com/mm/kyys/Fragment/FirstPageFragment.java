@@ -1,7 +1,6 @@
 package com.mm.kyys.Fragment;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -15,17 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.hyphenate.chat.EMMessage;
-import com.hyphenate.easeui.EaseConstant;
-import com.mm.kyys.Activity.ChatActivity;
+import com.mm.kyys.Activity.ClasstfyDiseaseActivity;
 import com.mm.kyys.Activity.DiseaseActivity;
-import com.mm.kyys.Activity.NoticActivity;
-import com.mm.kyys.Activity.RegisterBySelfActivity;
+import com.mm.kyys.Activity.SelectSectionActivity;
 import com.mm.kyys.Adapter.MyPagerAdapter;
 import com.mm.kyys.R;
-import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
-import com.mm.kyys.Wighet.XlTitle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +61,7 @@ public class FirstPageFragment extends BaseFragment implements View.OnClickListe
         switch (id){
 
             case R.id.firstpage_layout_yygh:
-                MyUtil.getIntance().ToActivity(oThis, RegisterBySelfActivity.class,true,null);
+                MyUtil.getIntance().ToActivity(oThis, SelectSectionActivity.class,true,null);
                 getActivity().overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
                 break;
             case R.id.firstpage_layout_mfzx:
@@ -75,7 +69,7 @@ public class FirstPageFragment extends BaseFragment implements View.OnClickListe
                 getActivity().overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
                 break;
             case R.id.firstpage_layout_zjwz:
-                //MyUtil.getIntance().ToActivity(oThis, NoticActivity.class,true,null);
+                MyUtil.getIntance().ToActivity(oThis, ClasstfyDiseaseActivity.class,true,null);
                 break;
         }
     }

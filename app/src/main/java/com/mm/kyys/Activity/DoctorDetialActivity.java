@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
@@ -142,8 +141,13 @@ public class DoctorDetialActivity extends Activity {
                 }else{
                     Log.e("xl", "123:f");
                     btn_gh.setText(R.string.guahao);
-                    MyUtil.getIntance().ToActivity(oThis,RegisterActivity.class,true,null);
-                    oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
+                    //MyUtil.getIntance().ToActivity(oThis,PayActivity.class,true,null);
+                    //oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
+                    Bundle bundle = new Bundle();
+
+
+                    MyUtil.getIntance().ToActivity(oThis,MyOrderActivity.class,true,null);
+
                 }
 
             }

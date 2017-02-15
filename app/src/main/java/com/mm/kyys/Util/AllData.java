@@ -9,7 +9,7 @@ import com.mm.kyys.R;
 
 public class AllData {
 
-    public static final String IP = "http://101.201.31.32/api/";
+    public static final String IP = "http://101.201.31.32:8055/api/";
 
 
     public static final String VIDEO_REQUEST = "xl.video_request";

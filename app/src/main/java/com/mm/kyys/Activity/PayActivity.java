@@ -20,7 +20,7 @@ import com.mm.kyys.Wighet.XlTitle;
  * Created by 27740 on 2017/1/16.
  */
 
-public class RegisterActivity extends Activity {
+public class PayActivity extends Activity {
 
     private Activity oThis;
     private Button btn_pay;

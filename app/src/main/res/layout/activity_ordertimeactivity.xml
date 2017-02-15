@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.mm.kyys.Wighet.XlTitle
+        android:id="@+id/ordertime_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </com.mm.kyys.Wighet.XlTitle>
+
+    <ScrollView
+        android:id="@+id/firstpage_sv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/layout_margin">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/ordertime_tv_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/keshi"
+                android:textSize="15sp"
+                android:textColor="@color/black_deep"
+                android:layout_margin="10dp"
+                />
+            <TextView
+                android:id="@+id/ordertime_tv_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/keshi"
+                android:textSize="15sp"
+                android:textColor="@color/black_deep"
+                android:layout_margin="10dp"
+                />
+        </LinearLayout>
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3e3e3"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ordertime_rv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+
+
+
+    </ScrollView>
+</LinearLayout>

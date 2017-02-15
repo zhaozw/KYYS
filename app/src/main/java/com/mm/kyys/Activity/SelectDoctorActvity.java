@@ -8,24 +8,17 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.mm.kyys.Adapter.SelectDoctorAdapter;
 import com.mm.kyys.Model.Doctor;
 import com.mm.kyys.R;
-import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
 import com.mm.kyys.Util.RestClient;
 import com.mm.kyys.Wighet.XlTitle;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -61,7 +54,7 @@ public class SelectDoctorActvity extends Activity {
 
         oThis= this;
         Bundle bundle = getIntent().getExtras();
-        setion_name = bundle.getString(RegisterBySelfActivity.SECTION_NAME);
+        setion_name = bundle.getString(SelectSectionActivity.SECTION_NAME);
 
         rv_doctor = (RecyclerView) findViewById(R.id.selectdoctor_rv);
         title = (XlTitle) findViewById(R.id.selectdoctor_title);
