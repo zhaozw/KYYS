@@ -24,6 +24,7 @@ import com.mm.kyys.Util.RestClient;
 import com.mm.kyys.Util.SharedPreferencesManager;
 import com.mm.kyys.Wighet.XlProgressDialog;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
@@ -89,7 +90,7 @@ public class LoginActivity extends Activity {
     }
 
     private void Login(){
-        /*pd = new XlProgressDialog(oThis,true,getResources().getString(R.string.dengluzhong));
+        pd = new XlProgressDialog(oThis,true,getResources().getString(R.string.dengluzhong));
         //pd.show();
         EMClient.getInstance().login(et_username.getText().toString().trim(), et_pwd.getText().toString().trim(), new EMCallBack() {
             @Override
@@ -129,8 +130,8 @@ public class LoginActivity extends Activity {
             public void onProgress(int i, String s) {
 
             }
-        });*/
-        MyUtil.getIntance().TimeToTimeStamp();
+        });
+        /*MyUtil.getIntance().TimeToTimeStamp();
 
         String account = et_username.getText().toString().trim();
         String password = et_pwd.getText().toString().trim();
@@ -149,8 +150,31 @@ public class LoginActivity extends Activity {
                 super.onSuccess(statusCode, headers, response);
                 Log.i("xl", "登录信息："+response);
 
+                try {
+                    String Code = response.getString("Code");
+                    String Resp = response.getString("Resp");
+                    String Msg = response.getString("Msg");
+                    Log.e("xl", "code："+Code);
+                    Log.e("xl", "Resp："+Resp);
+                    Log.e("xl", "Msg："+Msg);
+                    int code = Integer.parseInt(Code);
+
+                    switch (code){
+                        case 200:
+                            User user = JSON.parseObject(Resp,User.class);
+                            SharedPreferencesManager.getIntance(oThis).setUserInfo(oThis,user.toString());
+                            Log.e("xl", "用户头像："+ SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getImg());
+
+                            break;
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
-        });
+        });*/
     }
 
     private void Regist(){
