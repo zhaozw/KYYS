@@ -125,6 +125,7 @@ public class SelectSectionActivity extends BaseActivity{
                 list_section_child.clear();
                 getDate_child();
                 sectionAdapter_child.notifyDataSetChanged();
+
                 child_current_index = 0;
                 rv_section_child.setVisibility(View.VISIBLE);
                 parent_last_index = parent_current_index;
