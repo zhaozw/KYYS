@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.SubscriptionInfo;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -33,6 +34,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -92,7 +95,7 @@ public class SelectSectionActivity extends BaseActivity{
 
     private void inevent() {
 
-        title.setText(getResources().getString(R.string.yuyueguahao));
+        title.setText(getResources().getString(R.string.xuanzekeshi));
         title.setLeftVisibility(true);
         title.setRightVisibility(false);
         title.setleftText(R.string.fanhui);
@@ -213,6 +216,7 @@ public class SelectSectionActivity extends BaseActivity{
 
 
     private void getDate_child(){
+
         list_section_child.add(new Section("皮肤科",8));
         list_section_child.add(new Section("神经内科",9));
         list_section_child.add(new Section("耳鼻咽喉科",10));
@@ -237,6 +241,7 @@ public class SelectSectionActivity extends BaseActivity{
 
     @Override
     public void back() {
+        
         super.back();
         oThis.finish();
         oThis.overridePendingTransition(R.anim.fragment_slide_in_from_left,R.anim.fragment_slide_out_from_right);

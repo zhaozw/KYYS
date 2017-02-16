@@ -26,6 +26,7 @@ import com.mm.kyys.R;
 import com.mm.kyys.Util.MyUtil;
 import com.mm.kyys.Util.SharedPreferencesManager;
 import com.mm.kyys.View.CircularImage;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.math.BigDecimal;
@@ -111,17 +112,20 @@ public class MineFragment extends BaseFragment {
             }
         });
         User user = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity());
-        ImageLoader.getInstance().displayImage(user.getPhoto(),ci_user_photo);
-        tv_user_name.setText(user.getName());
-        switch (user.getIdentity()){
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_launcher) //设置图片在下载期间显示的图片
+                .showImageForEmptyUri(R.drawable.ic_launcher) //设置图片Uri为空或是错误的时候显示的图片 
+                .showImageOnFail(R.drawable.ic_launcher) //设置图片加载/解码过程中错误时候显示的图片
+                .build();
+        Log.e("xl", "显示头像："+user.getImg().toString());
+        ImageLoader.getInstance().displayImage(user.getImg(),ci_user_photo,options);
+        tv_user_name.setText(user.getUserName());
+        switch (user.getType()){
             case 0:
-                tv_user_iden.setText(getResources().getString(R.string.guanliyuan));
+                tv_user_iden.setText(getResources().getString(R.string.putongyonghu));
                 break;
             case 1:
                 tv_user_iden.setText(getResources().getString(R.string.yisheng));
-                break;
-            case 2:
-                tv_user_iden.setText(getResources().getString(R.string.putongyonghu));
                 break;
         }
 

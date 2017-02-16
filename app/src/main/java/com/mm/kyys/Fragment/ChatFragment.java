@@ -91,7 +91,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
             @Override
             public void onClick(View v) {
-                if (SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getIdentity()!=2){
+                if (SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getType()!=1){
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }else{
@@ -249,8 +249,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
             toUserName = "x";
         }
         boolean hasregister = SharedPreferencesManager.getIntance(getContext()).getRegisterInfo("userid"+"123");
-        int identity = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getIdentity();
-        if (hasregister||identity!=2){
+        int identity = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getType();
+        if (hasregister||identity!=1){
             switch (itemId) {
 
                 case ITEM_VIDEO:
@@ -359,11 +359,11 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
             sendAtMessage(content);
         }else{
             boolean hasregister = SharedPreferencesManager.getIntance(getContext()).getRegisterInfo("userid"+"123");
-            int identity = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getIdentity();
-            if (hasregister||identity!=2){
+            int identity = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getType();
+            if (hasregister||identity!=1){
                 EMMessage message = EMMessage.createTxtSendMessage(content, toChatUsername);
                 message.setAttribute("nick",user_nick);
-                message.setAttribute("pic",SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getPhoto());
+                message.setAttribute("pic",SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getImg());
                 sendMessage(message);
             }else{
                 final SweetAlertDialog sd = new SweetAlertDialog(getActivity());

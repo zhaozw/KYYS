@@ -262,7 +262,7 @@ public class VideoOrVoiceActivity extends Activity implements View.OnClickListen
                     title.setText(getResources().getString(R.string.lianjiezhong));
                 }
                 iv_userphoto_request.setVisibility(View.VISIBLE);
-                String hx_name1 = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getHX_name();
+                String hx_name1 = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getUserID();
                 if (hx_name1.equals("x")){
                     ImageLoader.getInstance().displayImage("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",iv_userphoto_request);
                 }else if(hx_name1.equals("l")){
@@ -283,7 +283,7 @@ public class VideoOrVoiceActivity extends Activity implements View.OnClickListen
                     title.setText(getResources().getString(R.string.qqjxyyth));
                 }
                 iv_userphoto_response.setVisibility(View.VISIBLE);
-                String hx_name = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getHX_name();
+                String hx_name = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getUserID();
                 if (hx_name.equals("x")){
                     ImageLoader.getInstance().displayImage("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",iv_userphoto_response);
                 }else if(hx_name.equals("l")){

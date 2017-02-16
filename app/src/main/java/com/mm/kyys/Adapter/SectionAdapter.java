@@ -65,8 +65,10 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
         holder.tv_section.setText(list_data.get(position).getName());
         if (list_ischeck.get(position)){
             holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.colorGreen));
+            holder.tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_green_24dp);
         }else{
             holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.black_deep));
+            holder.tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_white_24dp);
         }
         if (onItemClickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -96,11 +98,12 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_section;
-
+        TextView tv_arrow;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tv_section = (TextView) itemView.findViewById(R.id.item_section_tv);
+            tv_arrow = (TextView) itemView.findViewById(R.id.item_section_arrow);
 
         }
     }

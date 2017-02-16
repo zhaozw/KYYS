@@ -42,16 +42,17 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             />
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorWhite"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/registerbyself_rv_section_child"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 </LinearLayout>

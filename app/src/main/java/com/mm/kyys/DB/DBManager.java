@@ -51,7 +51,7 @@ public class DBManager {
             database_writable.delete(UserDao.USER_TABLE_NAME,null,null);
             for (User user : list_user){
                 ContentValues values = new ContentValues();
-                values.put(UserDao.USER_NAME,user.getName());
+                values.put(UserDao.USER_NAME,user.getUserName());
 
             }
         }

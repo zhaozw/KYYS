@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
+import com.baidu.mapapi.map.Text;
 import com.mm.kyys.Model.User;
 
 /**
@@ -88,7 +89,7 @@ public class SharedPreferencesManager {
         }
     }
 
-    //保存用户信息（昵称和头像）
+    //保存用户信息
     public void setUserNickPic(String user_id,String userinfo,Context context){
         sp = context.getSharedPreferences("user_nick_pic",
                 Context.MODE_PRIVATE);
@@ -102,12 +103,17 @@ public class SharedPreferencesManager {
         }
         editor.commit();
     }
-    //读取用户信息（昵称和头像）
-    public String getUserNickPic(String user_id,Context context){
+    //读取用户信息
+    public User getUserNickPic(String user_id,Context context){
         sp = context.getSharedPreferences("user_nick_pic",
                 Context.MODE_PRIVATE);
 
         String userinfo = sp.getString(user_id+"info","");
-        return userinfo;
+
+        if (TextUtils.isEmpty(userinfo)){
+            return null;
+        }else{
+            return JSON.parseObject(userinfo,User.class);
+        }
     }
 }

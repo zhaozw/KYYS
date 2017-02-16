@@ -49,9 +49,9 @@ public class DoctorDetialActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        identity = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getIdentity();
+        identity = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getType();
         canTakeVideo = SharedPreferencesManager.getIntance(oThis).getRegisterInfo("userid"+"123");
-        if (canTakeVideo||identity!=2){
+        if (canTakeVideo||identity!=0){
             btn_gh.setText(R.string.lianxiyisheng);
         }else{
             btn_gh.setText(R.string.guahao);

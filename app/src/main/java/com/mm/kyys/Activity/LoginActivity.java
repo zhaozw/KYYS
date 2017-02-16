@@ -90,7 +90,7 @@ public class LoginActivity extends Activity {
     }
 
     private void Login(){
-        pd = new XlProgressDialog(oThis,true,getResources().getString(R.string.dengluzhong));
+        /*pd = new XlProgressDialog(oThis,true,getResources().getString(R.string.dengluzhong));
         //pd.show();
         EMClient.getInstance().login(et_username.getText().toString().trim(), et_pwd.getText().toString().trim(), new EMCallBack() {
             @Override
@@ -130,8 +130,8 @@ public class LoginActivity extends Activity {
             public void onProgress(int i, String s) {
 
             }
-        });
-        /*MyUtil.getIntance().TimeToTimeStamp();
+        });*/
+        MyUtil.getIntance().TimeToTimeStamp();
 
         String account = et_username.getText().toString().trim();
         String password = et_pwd.getText().toString().trim();
@@ -161,10 +161,14 @@ public class LoginActivity extends Activity {
 
                     switch (code){
                         case 200:
+                            SharedPreferencesManager.getIntance(oThis).setUserInfo(oThis,Resp);
                             User user = JSON.parseObject(Resp,User.class);
-                            SharedPreferencesManager.getIntance(oThis).setUserInfo(oThis,user.toString());
+                            //Object json_user = JSON.toJSON(user);
                             Log.e("xl", "用户头像："+ SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getImg());
-
+                            SharedPreferencesManager.getIntance(oThis).setUserHasLogin(true);
+                            AllData.getInstance().setUserName(et_username.getText().toString().trim());
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            finish();
                             break;
                     }
 
@@ -174,7 +178,7 @@ public class LoginActivity extends Activity {
                 }
 
             }
-        });*/
+        });
     }
 
     private void Regist(){
