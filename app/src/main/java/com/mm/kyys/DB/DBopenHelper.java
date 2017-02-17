@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.mm.kyys.Model.Section;
+
 /**
  * Created by sexyXu on 2016/11/1.
  */
@@ -18,24 +20,24 @@ public class DBopenHelper extends SQLiteOpenHelper {
 
     public static DBopenHelper instance;
 
-    public static String CLASSIFY_TABLE_CREAT = "create table "
-            + ClassifyDao.CLASSIFY_TABLE_NAME +"("
-            + ClassifyDao.CLASSIFY_CATEID +" integer,"
-            + ClassifyDao.CLASSIFY_DISPLAYORDER +" integer,"
-            + ClassifyDao.CLASSIFY_NAME + " varchar(255),"
-            + ClassifyDao.CLASSIFY_PRICERANGE + " varchar(255),"
-            + ClassifyDao.CLASSIFY_PARENTID + " integer,"
-            + ClassifyDao.CLASSIFY_LAYER + " integer,"
-            + ClassifyDao.CLASSIFY_HASCHILD + " integer,"
-            + ClassifyDao.CLASSIFY_PATH+ " varchar(255));";
+    public static String SECTION_TABLE_CREAT = "create table "
+            + SectionDao.SECTION_TABLE_NAME +"("
+            + SectionDao.SECTION_DID +" varchar(255),"
+            + SectionDao.SECTION_HID +" varchar(255),"
+            + SectionDao.SECTION_NAME + " varchar(255),"
+            + SectionDao.SECTION_LASTUPDATETIME + " varchar(255),"
+            + SectionDao.SECTION_FLAG + " integer,"
+            + SectionDao.SECTION_TYPE + " integer,"
+            + SectionDao.SECTION_DID2 + " varchar(255),"
+            + SectionDao.SECTION_IMG + " varchar(255));";
 
-    public static String USER_TABLE_CREAT = "creat table "
+    public static String USER_TABLE_CREAT = "create table "
             + UserDao.USER_TABLE_NAME + "("
             + UserDao.USER_NAME + " varchar(255),"
             + UserDao.USER_AGE + " varchar(255),"
             + UserDao.USER_NICK + " varchar(255),"
             + UserDao.USER_PHOTO + " varchar(255),"
-            + UserDao.USER_SEX + "varchar(255));";
+            + UserDao.USER_SEX + " varchar(255));";
 
 
     public DBopenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -52,7 +54,9 @@ public class DBopenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, "建表");
-        db.execSQL(CLASSIFY_TABLE_CREAT);
+        Log.e("xl", "建表——Section："+SECTION_TABLE_CREAT);
+        Log.e("xl", "建表——User："+USER_TABLE_CREAT);
+        db.execSQL(SECTION_TABLE_CREAT);
         db.execSQL(USER_TABLE_CREAT);
     }
 

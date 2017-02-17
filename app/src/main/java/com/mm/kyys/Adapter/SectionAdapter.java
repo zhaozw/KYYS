@@ -56,37 +56,34 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-        /*LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.tv_section.getLayoutParams();
-        float[] arr = MyUtil.getIntance().screenPix(oThis);
-        //params.width = (int) arr[0];
-        params.height = (int) arr[1]/10;
-        holder.tv_section.setLayoutParams(params);*/
-
         holder.tv_section.setText(list_data.get(position).getName());
-        if (list_ischeck.get(position)){
-            holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.colorGreen));
-            holder.tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_green_24dp);
-        }else{
-            holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.black_deep));
-            holder.tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_white_24dp);
-        }
-        if (onItemClickListener != null){
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        if (list_ischeck.size()!=0){
+            if (list_ischeck.get(position)){
+                holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.colorGreen));
+                holder.tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_green_24dp);
+            }else{
+                holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.black_deep));
+                holder.tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_white_24dp);
+            }
+            if (onItemClickListener != null){
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    onItemClickListener.onClick(position,holder.tv_section);
+                        onItemClickListener.onClick(position,holder.tv_section);
 
-                }
-            });
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    onItemClickListener.onLongClick(position);
-                    return false;
-                }
-            });
+                    }
+                });
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        onItemClickListener.onLongClick(position);
+                        return false;
+                    }
+                });
+            }
         }
+
     }
 
 

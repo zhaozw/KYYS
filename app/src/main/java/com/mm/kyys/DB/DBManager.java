@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.mm.kyys.Model.Section;
 import com.mm.kyys.Model.User;
 
 import java.io.File;
@@ -45,7 +46,7 @@ public class DBManager {
         return db_question;
     }
 
-
+    //保存用户
     synchronized public void SaveUser(List<User> list_user,SQLiteDatabase database_writable){
         if (database_writable.isOpen()){
             database_writable.delete(UserDao.USER_TABLE_NAME,null,null);
@@ -57,38 +58,37 @@ public class DBManager {
         }
     }
 
-    /*synchronized public void SaveClassify_list(List<Node> list_node, SQLiteDatabase database_writable) {
+    //保存科室分类
+    synchronized public void SaveSection_list(List<Section> list_section, SQLiteDatabase database_writable) {
         Log.i("xl", "保存分类");
         if (database_writable.isOpen()) {
             Log.i("xl", "数据库已经打开了");
-            database_writable.delete(ClassifyDao.CLASSIFY_TABLE_NAME, null, null);
-            for (Node node : list_node) {
+            database_writable.delete(SectionDao.SECTION_TABLE_NAME, null, null);
+            for (Section section : list_section) {
                 ContentValues values = new ContentValues();
-                values.put(ClassifyDao.CLASSIFY_CATEID, node.getCateid());
-                values.put(ClassifyDao.CLASSIFY_DISPLAYORDER, node.getDisplayorder());
-                if (node.getName() != null)
-                    values.put(ClassifyDao.CLASSIFY_NAME, node.getName());
-                if (node.getPricerange() != null)
-                    values.put(ClassifyDao.CLASSIFY_PRICERANGE, node.getPricerange());
-                values.put(ClassifyDao.CLASSIFY_PARENTID, node.getParentid());
-                values.put(ClassifyDao.CLASSIFY_LAYER, node.getLayer());
-                values.put(ClassifyDao.CLASSIFY_HASCHILD, node.getHaschild());
-                if (node.getPath() != null)
-                    values.put(ClassifyDao.CLASSIFY_PATH, node.getPath());
-                database_writable.replace(ClassifyDao.CLASSIFY_TABLE_NAME, null, values);
+                values.put(SectionDao.SECTION_DID, section.getDid());
+                values.put(SectionDao.SECTION_HID, section.getHid());
+                values.put(SectionDao.SECTION_NAME,section.getName());
+                values.put(SectionDao.SECTION_LASTUPDATETIME,section.getLastUpdateTime());
+                values.put(SectionDao.SECTION_FLAG,section.getFlag());
+                values.put(SectionDao.SECTION_TYPE,section.getType());
+                values.put(SectionDao.SECTION_DID2,section.getDid2());
+                values.put(SectionDao.SECTION_IMG,section.getImg());
+                database_writable.replace(SectionDao.SECTION_TABLE_NAME, null, values);
             }
         }
     }
 
-    synchronized public void DeleteClassify(String classify_name, SQLiteDatabase database_writable) {
+    synchronized public void DeleteSection(String section_name, SQLiteDatabase database_writable,SQLiteDatabase database_readable) {
         if (database_writable.isOpen()) {
-            database_writable.delete(ClassifyDao.CLASSIFY_TABLE_NAME, ClassifyDao.CLASSIFY_NAME + " = ?", new String[]{classify_name});
+            database_writable.delete(SectionDao.SECTION_TABLE_NAME,SectionDao.SECTION_NAME + " = ?", new String[]{section_name});
         }
     }
 
+
     //查询可不可以不同步？  synchronized
-    public List<Node> QuerySonClassify(String parentid, SQLiteDatabase database_readable) {
-        List<Node> list = new ArrayList<Node>();
+    public List<Section> QuerySection(int type,String did2, SQLiteDatabase database_readable) {
+        List<Section> list = new ArrayList<Section>();
         //SQLiteDatabase db = helper.getReadableDatabase();
         // 调用SQLiteDatabase对象的query方法进行查询，返回一个Cursor对象：由数据库查询返回的结果集对象
         // 第一个参数String：表名
@@ -98,28 +98,43 @@ public class DBManager {
         // 第五个参数String:对查询的结果进行分组
         // 第六个参数String：对分组的结果进行限制
         // 第七个参数String：对查询的结果进行排序
-        *//*Cursor cursor = db.query(ClassifyDao.CLASSIFY_TABLE_NAME, new String[] { ClassifyDao.CLASSIFY_NAME,
-                "name" }, "id=?", new String[] { "1" }, null, null, null);*//*
+        /*Cursor cursor = database_readable.query(SectionDao.SECTION_TABLE_NAME, new String[] { SectionDao.SECTION_NAME,
+                "name" }, "id=?", new String[] { "1" }, null, null, null);*/
 
-        String[] arr = {parentid};
+        String[] arr = {did2,"2"};
         Cursor cursor;
-        cursor = database_readable.query(ClassifyDao.CLASSIFY_TABLE_NAME, null, ClassifyDao.CLASSIFY_PARENTID + "=?", arr, null, null, null);
+        //cursor = database_readable.query(SectionDao.SECTION_TABLE_NAME, null, SectionDao.SECTION_DID2 + "=?", arr, null, null, null);
+
+        switch (type){
+            case 0:
+                cursor = database_readable.query(SectionDao.SECTION_TABLE_NAME, null,null,null, null, null, null);
+                break;
+            case 1:
+                cursor = database_readable.query(SectionDao.SECTION_TABLE_NAME, null,SectionDao.SECTION_TYPE+"=?",new String[]{"1"}, null, null, null);
+                break;
+            case 2:
+                cursor = database_readable.query(SectionDao.SECTION_TABLE_NAME, null, SectionDao.SECTION_DID2 + "=? and "+SectionDao.SECTION_TYPE+"=?", arr,null, null, null);
+                break;
+            default:
+                cursor = database_readable.query(SectionDao.SECTION_TABLE_NAME, null,null,null, null, null, null);
+                break;
+        }
 
         while (cursor.moveToNext()) {
 
-            int c_cateid = cursor.getInt(cursor.getColumnIndex(ClassifyDao.CLASSIFY_CATEID));
-            int c_displayorder = cursor.getInt(cursor.getColumnIndex(ClassifyDao.CLASSIFY_DISPLAYORDER));
-            String c_name = cursor.getString(cursor.getColumnIndex(ClassifyDao.CLASSIFY_NAME));
-            String c_pricerange = cursor.getString(cursor.getColumnIndex(ClassifyDao.CLASSIFY_PRICERANGE));
-            int c_parentid = cursor.getInt(cursor.getColumnIndex(ClassifyDao.CLASSIFY_PARENTID));
-            int c_layer = cursor.getInt(cursor.getColumnIndex(ClassifyDao.CLASSIFY_LAYER));
-            int c_haschild = cursor.getInt(cursor.getColumnIndex(ClassifyDao.CLASSIFY_HASCHILD));
-            String c_path = cursor.getString(cursor.getColumnIndex(ClassifyDao.CLASSIFY_PATH));
+            String section_did = cursor.getString(cursor.getColumnIndex(SectionDao.SECTION_DID));
+            String section_hid = cursor.getString(cursor.getColumnIndex(SectionDao.SECTION_HID));
+            String section_name = cursor.getString(cursor.getColumnIndex(SectionDao.SECTION_NAME));
+            String section_lastupdatetime = cursor.getString(cursor.getColumnIndex(SectionDao.SECTION_LASTUPDATETIME));
+            int section_flag = cursor.getInt(cursor.getColumnIndex(SectionDao.SECTION_FLAG));
+            int section_type = cursor.getInt(cursor.getColumnIndex(SectionDao.SECTION_TYPE));
+            String section_did2 = cursor.getString(cursor.getColumnIndex(SectionDao.SECTION_DID2));
+            String section_img = cursor.getString(cursor.getColumnIndex(SectionDao.SECTION_IMG));
 
-            list.add(new Node(c_cateid, c_displayorder, c_name, c_pricerange, c_parentid, c_layer, c_haschild, c_path));
+            list.add(new Section(section_did, section_hid, section_name, section_lastupdatetime, section_flag, section_type, section_did2, section_img));
         }
         return list;
-    }*/
+    }
 
     synchronized public void closeDB() {
         if (helper != null) {

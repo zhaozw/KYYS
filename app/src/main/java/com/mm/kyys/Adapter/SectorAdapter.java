@@ -57,14 +57,14 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.MyViewHold
         Section section = list_section.get(position);
         Log.e("xl", "Section=="+section.toString());
         //ImageLoader.getInstance().displayImage(section.getPic().toString().trim(),holder.iv);
-        Log.e("xl", "pic------"+AllData.getInstance().getSectionPic(section.getPic_no()));
-        holder.iv.setBackgroundResource(AllData.getInstance().getSectionPic(section.getPic_no()));
+        Log.e("xl", "pic------"+AllData.getInstance().getSectionPic(1));
+        holder.iv.setBackgroundResource(AllData.getInstance().getSectionPic(1));
         holder.tv.setText(section.getName());
         if (onSectorItemClickListener!=null){
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onSectorItemClickListener.OnClick(position);
+                    //onSectorItemClickListener.OnClick(position);
                 }
             });
         }

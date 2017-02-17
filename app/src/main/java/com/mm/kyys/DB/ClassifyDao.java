@@ -8,16 +8,16 @@ import android.content.Context;
 
 public class ClassifyDao {
 
-    public static final String CLASSIFY_TABLE_NAME = "classify";
+    public static final String SECTION_TABLE_NAME = "classify";
 
-    public static final String CLASSIFY_CATEID = "cateid";
-    public static final String CLASSIFY_DISPLAYORDER = "displayorder";
-    public static final String CLASSIFY_NAME = "name";
-    public static final String CLASSIFY_PRICERANGE = "pricerange";
-    public static final String CLASSIFY_PARENTID = "parentid";
-    public static final String CLASSIFY_LAYER = "layer";
-    public static final String CLASSIFY_HASCHILD = "haschild";
-    public static final String CLASSIFY_PATH = "path";
+    public static final String SECTION_CATEID = "cateid";
+    public static final String SECTION_DISPLAYORDER = "displayorder";
+    public static final String SECTION_NAME = "name";
+    public static final String SECTION_PRICERANGE = "pricerange";
+    public static final String SECTION_PARENTID = "parentid";
+    public static final String SECTION_LAYER = "layer";
+    public static final String SECTION_HASCHILD = "haschild";
+    public static final String SECTION_PATH = "path";
 
     public ClassifyDao(){
 
