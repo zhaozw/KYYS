@@ -54,10 +54,10 @@ public class SelectDoctorAdapter extends RecyclerView.Adapter<SelectDoctorAdapte
     public void onBindViewHolder(SelectDoctorAdapter.MyViewHolder holder, final int position) {
         Doctor doctor = list_data.get(position);
         holder.tv_name.setText(doctor.getName());
-        ImageLoader.getInstance().displayImage(doctor.getPhoto(),holder.iv_photo);
-        holder.tv_reception.setText(doctor.getReception()+"");
-        holder.tv_info.setText(doctor.getSummary());
-        holder.tv_job.setText(doctor.getJob());
+        ImageLoader.getInstance().displayImage(doctor.getAdvantage(),holder.iv_photo);
+        holder.tv_reception.setText(doctor.getStars()+"");
+        holder.tv_info.setText(doctor.getIntroduction()+"");
+        holder.tv_job.setText(doctor.getType() );
 
         if (onDoctorClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {

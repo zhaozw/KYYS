@@ -9,32 +9,84 @@ import android.os.Parcelable;
 
 public class Doctor implements Parcelable {
 
+
+    /**
+     * dcid : 1c7286fc561b44dea4b34aaea4f2fc48
+     * did : d15d65b676d840cc875f6b359e958fff
+     * name : 张显忠
+     * type : 主任医师/教授
+     * dtype :
+     * hospitals : 沈阳市红十字会医院
+     * stars : 4
+     * advantage : 各种胃、肠、肝、胆、胰腺疾病的内科治疗，经腹水浓缩回输系统治疗各种顽固性腹水；经内镜下治疗项目食管、胃肠道狭窄置入术及晚期肿瘤介入术，胃肠道息肉切除术，异物取出术，胆总管结石取石术等。
+     * introduction :
+     * wait : 0
+     * lastUpdateTime : 2017-02-20T10:01:26
+     * flag : 0
+     */
+
+    private String dcid;
+    private String did;
     private String name;
-    private String photo;
-    private int reception;//接诊量
-    private String summary;//简介
-    private String job;
+    private String type;
+    private String dtype;
+    private String hospitals;
+    private int stars;
+    private String advantage;
+    private String introduction;
+    private int wait;
+    private String lastUpdateTime;
+    private int flag;
 
-    public Doctor() {
-    }
 
-    public Doctor(String name, String photo, int reception, String summary, String job) {
+
+    public Doctor(String dcid, String did, String name, String type, String dtype, String hospitals, int stars, String advantage, String introduction, int wait, String lastUpdateTime, int flag) {
+        this.dcid = dcid;
+        this.did = did;
         this.name = name;
-        this.photo = photo;
-        this.reception = reception;
-        this.summary = summary;
-        this.job = job;
+        this.type = type;
+        this.dtype = dtype;
+        this.hospitals = hospitals;
+        this.stars = stars;
+        this.advantage = advantage;
+        this.introduction = introduction;
+        this.wait = wait;
+        this.lastUpdateTime = lastUpdateTime;
+        this.flag = flag;
     }
 
     @Override
     public String toString() {
         return "Doctor{" +
-                "name='" + name + '\'' +
-                ", photo='" + photo + '\'' +
-                ", reception=" + reception +
-                ", summary='" + summary + '\'' +
-                ", job='" + job + '\'' +
+                "dcid='" + dcid + '\'' +
+                ", did='" + did + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", dtype='" + dtype + '\'' +
+                ", hospitals='" + hospitals + '\'' +
+                ", stars=" + stars +
+                ", advantage='" + advantage + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", wait=" + wait +
+                ", lastUpdateTime='" + lastUpdateTime + '\'' +
+                ", flag=" + flag +
                 '}';
+    }
+
+    public String getDcid() {
+        return dcid;
+    }
+
+    public void setDcid(String dcid) {
+        this.dcid = dcid;
+    }
+
+    public String getDid() {
+        return did;
+    }
+
+    public void setDid(String did) {
+        this.did = did;
     }
 
     public String getName() {
@@ -45,36 +97,76 @@ public class Doctor implements Parcelable {
         this.name = name;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getType() {
+        return type;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getReception() {
-        return reception;
+    public String getDtype() {
+        return dtype;
     }
 
-    public void setReception(int reception) {
-        this.reception = reception;
+    public void setDtype(String dtype) {
+        this.dtype = dtype;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getHospitals() {
+        return hospitals;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setHospitals(String hospitals) {
+        this.hospitals = hospitals;
     }
 
-    public String getJob() {
-        return job;
+    public int getStars() {
+        return stars;
     }
 
-    public void setJob(String job) {
-        this.job = job;
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+
+    public String getAdvantage() {
+        return advantage;
+    }
+
+    public void setAdvantage(String advantage) {
+        this.advantage = advantage;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public int getWait() {
+        return wait;
+    }
+
+    public void setWait(int wait) {
+        this.wait = wait;
+    }
+
+    public String getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(String lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 
     @Override
@@ -84,22 +176,39 @@ public class Doctor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.dcid);
+        dest.writeString(this.did);
         dest.writeString(this.name);
-        dest.writeString(this.photo);
-        dest.writeInt(this.reception);
-        dest.writeString(this.summary);
-        dest.writeString(this.job);
+        dest.writeString(this.type);
+        dest.writeString(this.dtype);
+        dest.writeString(this.hospitals);
+        dest.writeInt(this.stars);
+        dest.writeString(this.advantage);
+        dest.writeString(this.introduction);
+        dest.writeInt(this.wait);
+        dest.writeString(this.lastUpdateTime);
+        dest.writeInt(this.flag);
+    }
+
+    public Doctor() {
     }
 
     protected Doctor(Parcel in) {
+        this.dcid = in.readString();
+        this.did = in.readString();
         this.name = in.readString();
-        this.photo = in.readString();
-        this.reception = in.readInt();
-        this.summary = in.readString();
-        this.job = in.readString();
+        this.type = in.readString();
+        this.dtype = in.readString();
+        this.hospitals = in.readString();
+        this.stars = in.readInt();
+        this.advantage = in.readString();
+        this.introduction = in.readString();
+        this.wait = in.readInt();
+        this.lastUpdateTime = in.readString();
+        this.flag = in.readInt();
     }
 
-    public static final Parcelable.Creator<Doctor> CREATOR = new Parcelable.Creator<Doctor>() {
+    public static final Creator<Doctor> CREATOR = new Creator<Doctor>() {
         @Override
         public Doctor createFromParcel(Parcel source) {
             return new Doctor(source);

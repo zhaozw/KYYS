@@ -27,7 +27,7 @@ public class User implements Parcelable {
     private String lastUpdateTime;
     private int flag;
     private String userName;
-    private int type;
+    private int type;           //0:普通用户  1:医生
     private String img;
     private String mobiles;
     private String userEx;

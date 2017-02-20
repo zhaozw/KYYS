@@ -51,6 +51,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class SelectSectionActivity extends BaseActivity{
 
+    public static final String SECTION_ID = "section_id";
     public static final String SECTION_NAME = "section_name";
 
     private Activity oThis;
@@ -151,6 +152,7 @@ public class SelectSectionActivity extends BaseActivity{
                         FreshSecondMenuUi(position);
                         Section section = list_section_child.get(position);
                         Bundle bundle = new Bundle();
+                        bundle.putString(SECTION_ID,section.getDid());
                         bundle.putString(SECTION_NAME,section.getName());
                         MyUtil.getIntance().ToActivity(oThis,SelectDoctorActvity.class,true,bundle);
                         oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);

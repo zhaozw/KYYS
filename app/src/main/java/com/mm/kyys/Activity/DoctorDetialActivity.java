@@ -51,7 +51,7 @@ public class DoctorDetialActivity extends Activity {
         super.onResume();
         identity = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getType();
         canTakeVideo = SharedPreferencesManager.getIntance(oThis).getRegisterInfo("userid"+"123");
-        if (canTakeVideo||identity!=0){
+        if (canTakeVideo||identity==1){
             btn_gh.setText(R.string.lianxiyisheng);
         }else{
             btn_gh.setText(R.string.guahao);
@@ -119,9 +119,10 @@ public class DoctorDetialActivity extends Activity {
         btn_gh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (canTakeVideo||identity!=2){
+                if (canTakeVideo||identity==1){
                     btn_gh.setText(R.string.lianxiyisheng);
-                    String username = AllData.getInstance().getUserName();
+                    //String username = AllData.getInstance().getUserName();
+                    String username = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getUserID();
                     String tousername = "";
                     String touserNick = "";
                     if (username.equals("x")) {
@@ -141,12 +142,11 @@ public class DoctorDetialActivity extends Activity {
                 }else{
                     Log.e("xl", "123:f");
                     btn_gh.setText(R.string.guahao);
-                    //MyUtil.getIntance().ToActivity(oThis,PayActivity.class,true,null);
-                    //oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
+                    MyUtil.getIntance().ToActivity(oThis,PayActivity.class,true,null);
+                    MyUtil.getIntance().ActivityStartAmni(oThis);
                     Bundle bundle = new Bundle();
 
-
-                    MyUtil.getIntance().ToActivity(oThis,MyOrderActivity.class,true,null);
+                    //MyUtil.getIntance().ToActivity(oThis,MyOrderActivity.class,true,null);
 
                 }
 
