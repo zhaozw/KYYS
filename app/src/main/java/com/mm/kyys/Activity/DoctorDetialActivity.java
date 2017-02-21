@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.mm.kyys.Model.Doctor;
+import com.mm.kyys.Model.User;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
@@ -29,12 +30,11 @@ public class DoctorDetialActivity extends Activity {
     private Activity oThis;
     private Button btn_gh;
     private CircularImage iv_photo;
-    private Boolean canTakeVideo;
+    private Boolean canTakeVideo = false;
     private XlTitle title;
     private TextView tv_doctor_name,tv_doctor_identify,tv_doctor_intrduction;
-    private int identity;
     private Doctor doctor;
-
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,20 +53,22 @@ public class DoctorDetialActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        identity = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getType();
-        canTakeVideo = SharedPreferencesManager.getIntance(oThis).getRegisterInfo("userid"+"123");
-        if (canTakeVideo||identity==1){
+        if (user.getType()==0){
+            canTakeVideo = SharedPreferencesManager.getIntance(oThis).getRegisterInfo(user.getUserID()+"_"+doctor.getUid());
+        }
+
+        if (canTakeVideo||user.getType()==1){
             btn_gh.setText(R.string.lianxiyisheng);
         }else{
             btn_gh.setText(R.string.guahao);
         }
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_launcher) //设置图片在下载期间显示的图片
-                .showImageForEmptyUri(R.drawable.ic_launcher) //设置图片Uri为空或是错误的时候显示的图片 
-                .showImageOnFail(R.drawable.ic_launcher) //设置图片加载/解码过程中错误时候显示的图片
+                .showImageOnLoading(R.mipmap.em_icon_account) //设置图片在下载期间显示的图片
+                .showImageForEmptyUri(R.mipmap.em_icon_account) //设置图片Uri为空或是错误的时候显示的图片 
+                .showImageOnFail(R.mipmap.em_icon_account) //设置图片加载/解码过程中错误时候显示的图片
                 .build();
-        ImageLoader.getInstance().displayImage("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",iv_photo,options);
+        ImageLoader.getInstance().displayImage(doctor.getImg(),iv_photo,options);
     }
 
     @Override
@@ -99,6 +101,8 @@ public class DoctorDetialActivity extends Activity {
 
     private void inevent(){
 
+        user = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis);
+
         Bundle bundle = getIntent().getExtras();
         doctor = bundle.getParcelable("doctor");
         tv_doctor_name.setText(doctor.getName());
@@ -126,12 +130,12 @@ public class DoctorDetialActivity extends Activity {
             }
         });
 
-        ImageLoader.getInstance().displayImage("http://img2.imgtn.bdimg.com/it/u=3136611519,4107260583&fm=23&gp=0.jpg",iv_photo);
+        ImageLoader.getInstance().displayImage(doctor.getImg(),iv_photo);
 
         btn_gh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (canTakeVideo||identity==1){
+                if (canTakeVideo||user.getType()==1){
                     btn_gh.setText(R.string.lianxiyisheng);
 
                     String tousername = doctor.getUid();
@@ -139,17 +143,15 @@ public class DoctorDetialActivity extends Activity {
                     Intent intent = new Intent(oThis, ChatActivity.class);
                     intent.putExtra(EaseConstant.EXTRA_USER_ID,tousername);
                     intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
-                    //intent.putExtra(EaseConstant.EXTRA_USER_NICK,touserNick);
                     startActivity(intent);
                     oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
                 }else{
                     Log.e("xl", "123:f");
                     btn_gh.setText(R.string.guahao);
-                    MyUtil.getIntance().ToActivity(oThis,PayActivity.class,true,null);
-                    MyUtil.getIntance().ActivityStartAmni(oThis);
                     Bundle bundle = new Bundle();
-
-                    //MyUtil.getIntance().ToActivity(oThis,MyOrderActivity.class,true,null);
+                    bundle.putParcelable("doctor",doctor);
+                    MyUtil.getIntance().ToActivity(oThis,PayActivity.class,true,bundle);
+                    MyUtil.getIntance().ActivityStartAmni(oThis);
 
                 }
 

@@ -9,6 +9,7 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
@@ -29,6 +31,7 @@ import com.hyphenate.util.PathUtil;
 import com.mm.kyys.Activity.MainActivity;
 import com.mm.kyys.Activity.VideoOrVoiceActivity;
 import com.mm.kyys.Constant;
+import com.mm.kyys.Model.User;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
@@ -86,12 +89,13 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         setChatFragmentListener(this);
         super.setUpView();
         // set click listener
+        final User user = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getContext());
         titleBar.setBackgroundColor(getResources().getColor(R.color.colorBlack));
         titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getType()!=1){
+                if (user.getType()==1){
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }else{
@@ -100,7 +104,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
                             .setNegativeButton(getResources().getString(R.string.tongyi), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    SharedPreferencesManager.getIntance(getActivity()).setRegisterInfo("userid"+"123",false);
+                                    SharedPreferencesManager.getIntance(getActivity()).setRegisterInfo(user.getUserID()+"_"+toChatUsername,false);
                                     if (EasyUtils.isSingleActivity(getActivity())) {
                                         Intent intent = new Intent(getActivity(), MainActivity.class);
                                         startActivity(intent);
@@ -242,15 +246,16 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     @Override
     public boolean onExtendMenuItemClick(int itemId, View view) {
 
-        String toUserName = "";
-        if (AllData.getInstance().getUserName().equals("x")){
-            toUserName = "l";
+        User user = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getContext());
+        String user_id = user.getUserID();
+        boolean hasregister = false;
+        if (user.getType()==0){
+            hasregister = SharedPreferencesManager.getIntance(getContext()).getRegisterInfo(user_id+"_"+toChatUsername);
         }else{
-            toUserName = "x";
+            hasregister = true;
         }
-        boolean hasregister = SharedPreferencesManager.getIntance(getContext()).getRegisterInfo("userid"+"123");
-        int identity = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getType();
-        if (hasregister||identity!=1){
+
+        if (hasregister||user.getType()==1){
             switch (itemId) {
 
                 case ITEM_VIDEO:
@@ -261,10 +266,10 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
                     selectFileFromLocal();
                     break;
                 case ITEM_VOICE_CALL:
-                    startVoiceCall(toUserName);
+                    startVoiceCall();
                     break;
                 case ITEM_VIDEO_CALL:
-                    startVideoCall(toUserName);
+                    startVideoCall();
                     break;
                 //red packet code : 进入发红包页面
                 case ITEM_RED_PACKET:
@@ -312,20 +317,20 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     /**
      * make a voice call
      */
-    protected void startVoiceCall(String toUserName) {
+    protected void startVoiceCall() {
         if (!EMClient.getInstance().isConnected()) {
             Toast.makeText(getActivity(), R.string.not_connect_to_server, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getContext(),"请求语音",Toast.LENGTH_LONG).show();
             try {//单参数
-                EMClient.getInstance().callManager().makeVoiceCall(toUserName);
+                EMClient.getInstance().callManager().makeVoiceCall(toChatUsername);
             } catch (EMServiceNotReadyException e) {
                 e.printStackTrace();
             }
             Bundle bundle = new Bundle();
             bundle.putString("state","request");
             bundle.putString("type","voice");
-
+            bundle.putString("toUserid",toChatUsername);
             MyUtil.getIntance().ToActivity(getActivity(),VideoOrVoiceActivity.class,true,bundle);
         }
     }
@@ -333,20 +338,20 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     /**
      * make a video call
      */
-    protected void startVideoCall(String toUserName) {
+    protected void startVideoCall() {
         if (!EMClient.getInstance().isConnected())
             Toast.makeText(getActivity(), R.string.not_connect_to_server, Toast.LENGTH_SHORT).show();
         else {
             Toast.makeText(getContext(),"请求视频",Toast.LENGTH_LONG).show();
             try {//单参数
-                EMClient.getInstance().callManager().makeVideoCall(toUserName);
+                EMClient.getInstance().callManager().makeVideoCall(toChatUsername);
             } catch (EMServiceNotReadyException e) {
                 e.printStackTrace();
             }
             Bundle bundle = new Bundle();
             bundle.putString("state","request");
             bundle.putString("type","video");
-
+            bundle.putString("toUserid",toChatUsername);
             MyUtil.getIntance().ToActivity(getActivity(),VideoOrVoiceActivity.class,true,bundle);
         }
 
@@ -358,11 +363,16 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         if(EaseAtMessageHelper.get().containsAtUsername(content)){
             sendAtMessage(content);
         }else{
-            boolean hasregister = SharedPreferencesManager.getIntance(getContext()).getRegisterInfo("userid"+"123");
+            User user = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getContext());
+            boolean hasregister = false;
+            if (user.getType()==0){
+                hasregister = SharedPreferencesManager.getIntance(getContext()).getRegisterInfo(user.getUserID()+"_"+toChatUsername);
+            }
+
             int identity = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getType();
-            if (hasregister||identity!=1){
+            if (hasregister||identity==1){
                 EMMessage message = EMMessage.createTxtSendMessage(content, toChatUsername);
-                message.setAttribute("nick",user_nick);
+                message.setAttribute("nick",user.getUserName());
                 message.setAttribute("pic",SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity()).getImg());
                 sendMessage(message);
             }else{

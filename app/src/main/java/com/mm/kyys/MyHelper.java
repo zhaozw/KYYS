@@ -150,20 +150,26 @@ public class MyHelper implements EaseUI.EaseUserProfileProvider {
                 if (hasUnreadMessage()){
                     broadcastManager.sendBroadcast(new Intent(AllData.RECEIVE_MESSAGE));
                 }
-                if(!activityName.equals("com.mm.kyys.Activity.ChatActivity")){
-                    Log.e("xl", "通知栏");
-                    for (EMMessage message : messages) {
-                        //EMLog.d(TAG, "onMessageReceived id : " + message.getMsgId());
-                        // in background, do not refresh UI, notify it in notification bar
 
+                    for (EMMessage message : messages) {
                         try {
                             Log.e("xl", "messsage username = "+message.getUserName());
                             Log.e("xl", "messsage nick = "+message.getStringAttribute("nick").toString());
                             Log.e("xl", "messsage pic = "+message.getStringAttribute("pic").toString());
+                            HxUserInfo userInfo = new HxUserInfo();
+                            userInfo.setHx_id(message.getUserName());
+                            userInfo.setHx_nick(message.getStringAttribute("nick"));
+                            userInfo.setHx_img(message.getStringAttribute("pic"));
+                            String Json_str = JSON.toJSONString(userInfo);
+                            Log.e("xl","保存用户环信信息："+Json_str);
+                            SharedPreferencesManager.getIntance(context).setUserNickPicHxID(userInfo.getHx_id(),Json_str,context);
+
                         } catch (HyphenateException e) {
                             e.printStackTrace();
                         }
                         easeUI = EaseUI.getInstance();
+                        if(!activityName.equals("com.mm.kyys.Activity.ChatActivity")){
+                            Log.e("xl", "通知栏");
                         if(!easeUI.hasForegroundActivies()){
                             getNotifier().onNewMsg(message);
                         }

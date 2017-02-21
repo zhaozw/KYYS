@@ -32,20 +32,21 @@ public class CallReceiver extends BroadcastReceiver{
 		    return;
 		//username
 		String from = intent.getStringExtra("from");
+		Log.e("xl", "广播接收："+from);
 		//call type
 		String type = intent.getStringExtra("type");
 		Log.e("xl", "接听类型："+type);
 		if("video".equals(type)){ //video call
 			MyUtil.wakeUpAndUnlock(context);
-		    context.startActivity(new Intent(context, VideoOrVoiceActivity.class)/*.
-                    putExtra("username", from).putExtra("isComingCall", true)*/
+		    context.startActivity(new Intent(context, VideoOrVoiceActivity.class)
+                    .putExtra("toUserid", from)//.putExtra("isComingCall", true)
 					.putExtra("state","response")
 					.putExtra("type","video")
 					.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 		}else{ //voice call
 			MyUtil.wakeUpAndUnlock(context);
-		    context.startActivity(new Intent(context, VideoOrVoiceActivity.class)/*.
-		            putExtra("username", from).putExtra("isComingCall", true)*/
+		    context.startActivity(new Intent(context, VideoOrVoiceActivity.class)
+					.putExtra("toUserid", from)//.putExtra("isComingCall", true)
 					.putExtra("state","response")
 					.putExtra("type","voice")
 					.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));

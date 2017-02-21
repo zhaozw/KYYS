@@ -110,7 +110,6 @@ public class SharedPreferencesManager {
     public HxUserInfo getUserNickPicHxID(String user_id, Context context){
         sp = context.getSharedPreferences("user_nick_pic_hxid",
                 Context.MODE_PRIVATE);
-
         String userinfo = sp.getString(user_id+"info","gg");
         if (TextUtils.isEmpty(userinfo)){
             return null;

@@ -4,14 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
+import com.mm.kyys.Model.Doctor;
+import com.mm.kyys.Model.HxUserInfo;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
+import com.mm.kyys.Util.SharedPreferencesManager;
 
 /**
  * Created by 27740 on 2017/1/6.
@@ -41,25 +45,20 @@ public class NoticActivity extends BaseActivity {
     }
 
     private void inevent() {
+        Log.e("xl", "inevent");
         easeConversationListFragment.setConversationListItemClickListener(new EaseConversationListFragment.EaseConversationListItemClickListener() {
 
             @Override
             public void onListItemClicked(EMConversation conversation) {
-                String username = AllData.getInstance().getUserName();
-                String tousername = "";
-                String touserNick = "";
-                if (username.equals("x")) {
-                    tousername = "l";
-                    touserNick = "L";
-                }else{
-                    tousername = "x";
-                    touserNick = "X";
-                }
+                Log.e("xl", "ToUserName:"+conversation.getLastMessage().getUserName());
 
+
+                HxUserInfo userInfo = SharedPreferencesManager.getIntance(oThis).getUserNickPicHxID(conversation.getLastMessage().getUserName(),oThis);
+                Log.e("xl", "对话列表：hx_userinfo:"+userInfo.toString());
                 Intent intent = new Intent(oThis, ChatActivity.class);
-                intent.putExtra(EaseConstant.EXTRA_USER_ID,tousername);
+                intent.putExtra(EaseConstant.EXTRA_USER_ID,conversation.getLastMessage().getUserName());
                 intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
-                intent.putExtra(EaseConstant.EXTRA_USER_NICK,touserNick);
+                intent.putExtra(EaseConstant.EXTRA_USER_NICK,userInfo.getHx_nick());
                 startActivity(intent);
             }
         });

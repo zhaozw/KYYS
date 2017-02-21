@@ -26,6 +26,7 @@ import com.hyphenate.exceptions.EMNoActiveCallException;
 import com.hyphenate.exceptions.EMServiceNotReadyException;
 import com.hyphenate.media.EMLocalSurfaceView;
 import com.hyphenate.media.EMOppositeSurfaceView;
+import com.mm.kyys.Model.HxUserInfo;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
@@ -70,6 +71,7 @@ public class VideoOrVoiceActivity extends Activity implements View.OnClickListen
     private boolean had_connected = false;
     private String state = "";
     private String type = "";
+    private String touserid = "";
 
 
     @Override
@@ -84,6 +86,7 @@ public class VideoOrVoiceActivity extends Activity implements View.OnClickListen
     protected void onDestroy() {
         super.onDestroy();
         state = "";
+        touserid = "";
         unregisterBroadcastReceiver();
 
 
@@ -192,6 +195,7 @@ public class VideoOrVoiceActivity extends Activity implements View.OnClickListen
     private void inevent() {
         state = getIntent().getStringExtra("state");
         type = getIntent().getStringExtra("type");
+        touserid = getIntent().getStringExtra("toUserid");
 
         title.setLeftVisibility(false);
         title.setRightVisibility(false);
@@ -239,7 +243,6 @@ public class VideoOrVoiceActivity extends Activity implements View.OnClickListen
                     sf_local.setVisibility(View.VISIBLE);
                     sf_oppo.setVisibility(View.VISIBLE);
                 }else{
-                    Log.e("xl", "语音链接");
                     title.setText(getResources().getString(R.string.yuyintonghuazhong));
                     btn_changecamera.setVisibility(View.GONE);
                     sf_local.setVisibility(View.GONE);
@@ -262,12 +265,9 @@ public class VideoOrVoiceActivity extends Activity implements View.OnClickListen
                     title.setText(getResources().getString(R.string.lianjiezhong));
                 }
                 iv_userphoto_request.setVisibility(View.VISIBLE);
-                String hx_name1 = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getUserID();
-                if (hx_name1.equals("x")){
-                    ImageLoader.getInstance().displayImage("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",iv_userphoto_request);
-                }else if(hx_name1.equals("l")){
-                    ImageLoader.getInstance().displayImage("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3230112726,3777160653&fm=116&gp=0.jpg",iv_userphoto_request);
-                }
+                Log.e("xl", "视频用户hx_id"+touserid);
+                HxUserInfo userInfo_request = SharedPreferencesManager.getIntance(oThis).getUserNickPicHxID(touserid,oThis);
+                ImageLoader.getInstance().displayImage(userInfo_request.getHx_img(),iv_userphoto_request);
 
                 break;
             case "response":
@@ -283,12 +283,10 @@ public class VideoOrVoiceActivity extends Activity implements View.OnClickListen
                     title.setText(getResources().getString(R.string.qqjxyyth));
                 }
                 iv_userphoto_response.setVisibility(View.VISIBLE);
-                String hx_name = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getUserID();
-                if (hx_name.equals("x")){
-                    ImageLoader.getInstance().displayImage("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",iv_userphoto_response);
-                }else if(hx_name.equals("l")){
-                    ImageLoader.getInstance().displayImage("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3230112726,3777160653&fm=116&gp=0.jpg",iv_userphoto_response);
-                }
+                Log.e("xl", "视频用户hx_id"+touserid);
+                HxUserInfo userInfo_response = SharedPreferencesManager.getIntance(oThis).getUserNickPicHxID(touserid,oThis);
+                ImageLoader.getInstance().displayImage(userInfo_response.getHx_img(),iv_userphoto_response);
+
                 break;
         }
     }

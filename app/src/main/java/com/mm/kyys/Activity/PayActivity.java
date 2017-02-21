@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mm.kyys.Model.Doctor;
+import com.mm.kyys.Model.User;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.SharedPreferencesManager;
@@ -26,21 +28,10 @@ public class PayActivity extends Activity {
     private Button btn_pay;
     private XlProgressDialog dialog;
     private XlTitle title;
+    private User user;
+    private Doctor doctor;
 
 
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what){
-                case 1:
-                    SharedPreferencesManager.getIntance(oThis).setRegisterInfo("userid"+"123",true);
-
-                    oThis.finish();
-                    break;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +51,9 @@ public class PayActivity extends Activity {
 
     private void init(){
         oThis = this;
+
+        doctor = getIntent().getExtras().getParcelable("doctor");
+        user = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis);
 
         btn_pay = (Button) findViewById(R.id.register_btn_pay);
         title = (XlTitle) findViewById(R.id.register_title);
@@ -97,7 +91,9 @@ public class PayActivity extends Activity {
                 sd.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        SharedPreferencesManager.getIntance(oThis).setRegisterInfo("userid"+"123",true);
+                        if (user.getType()==0){
+                            SharedPreferencesManager.getIntance(oThis).setRegisterInfo(user.getUserID()+"_"+doctor.getUid(),true);
+                        }
                         sweetAlertDialog.dismiss();
                         oThis.finish();
                     }

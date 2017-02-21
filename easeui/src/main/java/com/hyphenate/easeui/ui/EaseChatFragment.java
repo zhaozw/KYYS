@@ -128,8 +128,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         chatType = fragmentArgs.getInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         // userId you are chat with or group id
         toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
-        /*user_nick = fragmentArgs.getString(EaseConstant.EXTRA_USER_NICK);
-        Log.e("xl", "nick:"+user_nick);*/
+        user_nick = fragmentArgs.getString(EaseConstant.EXTRA_USER_NICK);
+        Log.e("xl", "nick:"+user_nick);
 
         super.onActivityCreated(savedInstanceState);
     }
@@ -187,7 +187,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     }
 
     protected void setUpView() {
-        //titleBar.setTitle(user_nick);
+        titleBar.setTitle(user_nick);
         if (chatType == EaseConstant.CHATTYPE_SINGLE) {
             // set title
             if(EaseUserUtils.getUserInfo(toChatUsername) != null){
