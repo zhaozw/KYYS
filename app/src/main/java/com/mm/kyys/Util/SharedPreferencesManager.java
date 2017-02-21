@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.baidu.mapapi.map.Text;
+import com.mm.kyys.Model.Doctor;
+import com.mm.kyys.Model.HxUserInfo;
 import com.mm.kyys.Model.User;
 
 /**
@@ -90,8 +93,8 @@ public class SharedPreferencesManager {
     }
 
     //保存用户信息
-    public void setUserNickPic(String user_id,String userinfo,Context context){
-        sp = context.getSharedPreferences("user_nick_pic",
+    public void setUserNickPicHxID(String user_id,String userinfo,Context context){
+        sp = context.getSharedPreferences("user_nick_pic_hxid",
                 Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sp.edit();
@@ -104,16 +107,15 @@ public class SharedPreferencesManager {
         editor.commit();
     }
     //读取用户信息
-    public User getUserNickPic(String user_id,Context context){
-        sp = context.getSharedPreferences("user_nick_pic",
+    public HxUserInfo getUserNickPicHxID(String user_id, Context context){
+        sp = context.getSharedPreferences("user_nick_pic_hxid",
                 Context.MODE_PRIVATE);
 
-        String userinfo = sp.getString(user_id+"info","");
-
+        String userinfo = sp.getString(user_id+"info","gg");
         if (TextUtils.isEmpty(userinfo)){
             return null;
         }else{
-            return JSON.parseObject(userinfo,User.class);
+            return JSON.parseObject(userinfo,HxUserInfo.class);
         }
     }
 }
