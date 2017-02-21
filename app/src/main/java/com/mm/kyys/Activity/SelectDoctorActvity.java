@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.View;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.mm.kyys.Adapter.SelectDoctorAdapter;
 import com.mm.kyys.DB.DBManager;
 import com.mm.kyys.Model.Doctor;
+import com.mm.kyys.Model.HxUserInfo;
 import com.mm.kyys.Model.Section;
 import com.mm.kyys.Model.User;
 import com.mm.kyys.R;
@@ -29,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
@@ -104,11 +107,7 @@ public class SelectDoctorActvity extends Activity {
     }
     //https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg
     private void getData(){
-        Log.e("xl", "getdata");
-        //list_doctor.add(new Doctor("段志宇","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",6,"各种疾病诊断","主任医师"));
-        //list_doctor.add(new Doctor("段志宇","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",6,"各种疾病诊断","主任医师"));
-        //list_doctor.add(new Doctor("段志宇","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",6,"各种疾病诊断","主任医师"));
-        //list_doctor.add(new Doctor("段志宇","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg",6,"各种疾病诊断","主任医师"));
+        Log.e("xl", "getData");
 
         RequestParams params = new RequestParams();
         params.add("did",section_id);
@@ -137,16 +136,24 @@ public class SelectDoctorActvity extends Activity {
                     switch (code){
                         case 200:
                             list_doctor = JSON.parseArray(Resp,Doctor.class);
-                            list_doctor.toString();
-                            Log.e("xl", "LIST_DOCTOR:"+list_doctor.toString() );
+                            Log.e("xl", "LIST_DOCTOR:"+list_doctor.toString());
+                            for (Doctor doctor : list_doctor){
+                                HxUserInfo hx_userinfo = new HxUserInfo(doctor.getUid(),doctor.getName(),doctor.getImg());
+                                String json_str = JSON.toJSONString(hx_userinfo);
+                                Log.e("xl", "保存医生环信信息："+json_str);
+                                SharedPreferencesManager.getIntance(oThis).setUserNickPicHxID(doctor.getUid(),json_str,oThis);
+                            }
+
                             adapter = new SelectDoctorAdapter(oThis,list_doctor);
                             rv_doctor.setAdapter(adapter);
                             adapter.setOnDoctorClickListener(new SelectDoctorAdapter.OnDoctorClickListener() {
                                 @Override
                                 public void OnClick(int position) {
-                                    MyUtil.getIntance().ToActivity(oThis,DoctorDetialActivity.class,true,null);
+                                    Doctor doctor = list_doctor.get(position);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putParcelable("doctor",doctor);
+                                    MyUtil.getIntance().ToActivity(oThis,DoctorDetialActivity.class,true,bundle);
                                     oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
-
                                 }
                             });
                     }

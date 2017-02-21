@@ -8,6 +8,62 @@
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_sent_message.xml"
     },
     {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_message.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_message.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_voice.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_voice.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_file.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_sent_file.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_activity_show_file.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_activity_show_file.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_picture.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_picture.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_layout_chat_primary_menu.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_layout_chat_primary_menu.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_fragment_contact_list.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_fragment_contact_list.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_location.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_sent_location.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_alert_dialog.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_alert_dialog.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_chat_history.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_chat_history.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_emojicon.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_widget_emojicon.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_fragment_conversation_list.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_fragment_conversation_list.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_voice_call.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_voice_call.xml"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_voice_recorder.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_widget_voice_recorder.xml"
+    },
+    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_voice_call.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_sent_voice_call.xml"
     },
@@ -28,10 +84,6 @@
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_chat_menu_item.xml"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_message.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_message.xml"
-    },
-    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_contact_list.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_widget_contact_list.xml"
     },
@@ -42,10 +94,6 @@
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_bigexpression.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_bigexpression.xml"
-    },
-    {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_voice.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_voice.xml"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_search_bar.xml",
@@ -72,16 +120,8 @@
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_showvideo_activity.xml"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_file.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_sent_file.xml"
-    },
-    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_video.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_sent_video.xml"
-    },
-    {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_activity_show_file.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_activity_show_file.xml"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_video_call.xml",
@@ -90,10 +130,6 @@
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_expression_gridview.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_expression_gridview.xml"
-    },
-    {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_picture.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_picture.xml"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_bigexpression.xml",
@@ -112,20 +148,8 @@
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_activity_show_big_image.xml"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_layout_chat_primary_menu.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_layout_chat_primary_menu.xml"
-    },
-    {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_fragment_contact_list.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_fragment_contact_list.xml"
-    },
-    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_scroll_tab_item.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_scroll_tab_item.xml"
-    },
-    {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_location.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_sent_location.xml"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_emojicon.xml",
@@ -136,16 +160,12 @@
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_activity_baidumap.xml"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_switch_button.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_widget_switch_button.xml"
-    },
-    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_chat_message_list.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_chat_message_list.xml"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_alert_dialog.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_alert_dialog.xml"
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_switch_button.xml",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_widget_switch_button.xml"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_title_bar.xml",
@@ -160,36 +180,16 @@
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_search_bar_with_padding.xml"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_chat_history.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_chat_history.xml"
-    },
-    {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_emojicon.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_widget_emojicon.xml"
-    },
-    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_layout_emojicon_menu.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_layout_emojicon_menu.xml"
-    },
-    {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_fragment_conversation_list.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_fragment_conversation_list.xml"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_video.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_video.xml"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_voice_call.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_row_received_voice_call.xml"
-    },
-    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_fragment_chat.xml",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_fragment_chat.xml"
-    },
-    {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_voice_recorder.xml",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\layout\\ease_widget_voice_recorder.xml"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_emojicon_tab_bar.xml",

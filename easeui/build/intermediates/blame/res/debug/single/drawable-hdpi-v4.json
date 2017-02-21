@@ -436,12 +436,12 @@
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_video_recorder_start_btn.png"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_record_animate_07.png",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_record_animate_07.png"
-    },
-    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chat_face_normal.png",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_chat_face_normal.png"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_record_animate_07.png",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_record_animate_07.png"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_record_animate_04.png",

@@ -35,6 +35,17 @@ public class User implements Parcelable {
     public User() {
     }
 
+    /**
+     * @param userID    用户环信id
+     * @param userName  用户昵称
+     * @param img       用户头像
+     */
+    public User(String userID, String userName, String img) {
+        this.userID = userID;
+        this.userName = userName;
+        this.img = img;
+    }
+
     public User(String account, String password, String userID, String lastUpdateTime, int flag, String userName, int type, String img, String mobiles, String userEx) {
         this.account = account;
         this.password = password;

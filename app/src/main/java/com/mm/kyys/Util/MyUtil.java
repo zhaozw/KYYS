@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mm.kyys.R;
+import com.mm.kyys.View.SweetAlertDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -253,13 +254,21 @@ public class MyUtil {
         Log.e("xl", "日期+时间："+Time);
         return date;
     }
-
+    //Activity进入动画
     public void ActivityStartAmni(Activity oThis){
         oThis.overridePendingTransition(R.anim.fragment_slide_in_from_right,R.anim.fragment_slide_out_from_left);
     }
-
+    //Actiivty推出动画
     public void ActivityStopAmni(Activity oThis){
         oThis.overridePendingTransition(R.anim.fragment_slide_in_from_left,R.anim.fragment_slide_out_from_right);
+    }
+
+    //错误dialog
+    public void ErrorInfoDialog(Activity oThis,String info){
+        new SweetAlertDialog(oThis,SweetAlertDialog.ERROR_TYPE)
+                .setTitleText(info)
+                //.setContentText("You clicked the button!")
+                .show();
     }
 
 }

@@ -15,6 +15,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMCallStateChangeListener;
 import com.hyphenate.chat.EMClient;
@@ -28,6 +29,7 @@ import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
 import com.mm.kyys.Activity.ChatActivity;
+import com.mm.kyys.Model.HxUserInfo;
 import com.mm.kyys.Receiver.CallReceiver;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
@@ -94,7 +96,7 @@ public class MyHelper implements EaseUI.EaseUserProfileProvider {
         //将RAW下的资源文件复制到手机存储空间
         MyUtil.getIntance().copyFromRaw(context,R.raw.kyys_video,"video_music.mp3");
         //设置用户头像和昵称
-        UserNickPhotoProvider();
+        UserNickPhotoProvider(context);
 
     }
 
@@ -224,29 +226,39 @@ public class MyHelper implements EaseUI.EaseUserProfileProvider {
         return easeUI.getNotifier();
     }
 
-    public void UserNickPhotoProvider(){
+    public void UserNickPhotoProvider(final Context context){
         EaseUI easeui = EaseUI.getInstance();
         easeui.setUserProfileProvider(new EaseUI.EaseUserProfileProvider() {
             @Override
             public EaseUser getUser(String username) {
-                return getUserInfo(username);
+                return getUserInfo(username,context);
             }
         });
     }
 
-    public EaseUser getUserInfo(String username){
+    public EaseUser getUserInfo(String username,Context context){
         EaseUser user = null;
         user = new EaseUser(username);
         Log.e("xl", "查询"+username+"的信息");
+        HxUserInfo userInfo = SharedPreferencesManager.getIntance(context).getUserNickPicHxID(username,context);
+        Log.e("xl", "读取环信信息："+ userInfo);
+        if (userInfo!=null){
+            user.setNickname(userInfo.getHx_nick());
+            user.setAvatar(userInfo.getHx_img());
+        }else{
+            Log.e("xl", "userInfo==null");
+        }
+/*
+        //user.setAvatar("http://101.201.31.32:8055/Images/user_20160519000000000.png");
+        //user.setAvatar("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg");
         if (username.equals("l")){
             user.setNickname("段志宇");
             user.setAvatar("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3018777119,2532860069&fm=21&gp=0.jpg");
         }else if(username.equals("x")){
             user.setNickname("X");
             user.setAvatar("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3230112726,3777160653&fm=116&gp=0.jpg");
-        }
-/*        user.setNickname("x");
-        user.setAvatar("http://img2.imgtn.bdimg.com/it/u=3630772122,2381812656&fm=23&gp=0.jpg");*/
+        }*/
+
         return user;
     }
 

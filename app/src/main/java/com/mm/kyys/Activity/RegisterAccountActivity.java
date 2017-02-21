@@ -14,9 +14,12 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
+import com.mm.kyys.Util.MyUtil;
 import com.mm.kyys.Util.RestClient;
+import com.mm.kyys.View.SweetAlertDialog;
 import com.mm.kyys.Wighet.XlTitle;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
@@ -75,11 +78,11 @@ public class RegisterAccountActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if(TextUtils.isEmpty(et_account.getText())||TextUtils.isEmpty(et_pwd.getText())||TextUtils.isEmpty(et_pwd_again.getText())||TextUtils.isEmpty(et_identifying.getText())){
-                    Toast.makeText(oThis,getResources().getString(R.string.zcxxbwz),Toast.LENGTH_LONG).show();
+                    MyUtil.getIntance().ErrorInfoDialog(oThis,getResources().getString(R.string.zcxxbwz));
                 } else if (!et_pwd.getText().toString().equals(et_pwd_again.getText().toString())){
-                    Toast.makeText(oThis,getResources().getString(R.string.mmsrnyz),Toast.LENGTH_LONG).show();
+                    MyUtil.getIntance().ErrorInfoDialog(oThis,getResources().getString(R.string.mmsrnyz));
                 } else if (et_pwd.getText().toString().length()<6||et_pwd.getText().toString().length()>16){
-                    Toast.makeText(oThis,getResources().getString(R.string.nsrdmmbfhyq),Toast.LENGTH_LONG).show();
+                    MyUtil.getIntance().ErrorInfoDialog(oThis,getResources().getString(R.string.nsrdmmbfhyq));
                 }else {
                     account = et_account.getText().toString();
                     password = et_pwd.getText().toString();
@@ -107,7 +110,26 @@ public class RegisterAccountActivity extends BaseActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Log.i("xl", "注册信息："+response);
+                try {
+                    String Code = response.getString("Code");
+                    String Resp = response.getString("Resp");
+                    String Msg = response.getString("Msg");
+                    int code = Integer.parseInt(Code);
 
+                    switch (code){
+                        case 200:
+                            new SweetAlertDialog(oThis,SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText(getResources().getString(R.string.zhucechenggong))
+                                    //.setContentText("You clicked the button!")
+                                    .show();
+                            break;
+                        default:
+                            MyUtil.getIntance().ErrorInfoDialog(oThis,Msg);
+                            break;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

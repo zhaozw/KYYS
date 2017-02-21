@@ -9,13 +9,12 @@ import android.os.Parcelable;
 
 public class Doctor implements Parcelable {
 
-
     /**
-     * dcid : 1c7286fc561b44dea4b34aaea4f2fc48
-     * did : d15d65b676d840cc875f6b359e958fff
+     * dcid : 1c7286fc561b44dea4b34aaea4f2fc48      医生id
+     * did : d15d65b676d840cc875f6b359e958fff       二级分类id
      * name : 张显忠
      * type : 主任医师/教授
-     * dtype :
+     * dtype :                                      备用
      * hospitals : 沈阳市红十字会医院
      * stars : 4
      * advantage : 各种胃、肠、肝、胆、胰腺疾病的内科治疗，经腹水浓缩回输系统治疗各种顽固性腹水；经内镜下治疗项目食管、胃肠道狭窄置入术及晚期肿瘤介入术，胃肠道息肉切除术，异物取出术，胆总管结石取石术等。
@@ -23,6 +22,8 @@ public class Doctor implements Parcelable {
      * wait : 0
      * lastUpdateTime : 2017-02-20T10:01:26
      * flag : 0
+     * uid : 474690dbf61d45a58d245319eeed05d7       用户id
+     * img :
      */
 
     private String dcid;
@@ -37,10 +38,10 @@ public class Doctor implements Parcelable {
     private int wait;
     private String lastUpdateTime;
     private int flag;
+    private String uid;
+    private String img;
 
-
-
-    public Doctor(String dcid, String did, String name, String type, String dtype, String hospitals, int stars, String advantage, String introduction, int wait, String lastUpdateTime, int flag) {
+    public Doctor(String dcid, String did, String name, String type, String dtype, String hospitals, int stars, String advantage, String introduction, int wait, String lastUpdateTime, int flag, String uid, String img) {
         this.dcid = dcid;
         this.did = did;
         this.name = name;
@@ -53,6 +54,8 @@ public class Doctor implements Parcelable {
         this.wait = wait;
         this.lastUpdateTime = lastUpdateTime;
         this.flag = flag;
+        this.uid = uid;
+        this.img = img;
     }
 
     @Override
@@ -70,6 +73,8 @@ public class Doctor implements Parcelable {
                 ", wait=" + wait +
                 ", lastUpdateTime='" + lastUpdateTime + '\'' +
                 ", flag=" + flag +
+                ", uid='" + uid + '\'' +
+                ", img='" + img + '\'' +
                 '}';
     }
 
@@ -169,6 +174,23 @@ public class Doctor implements Parcelable {
         this.flag = flag;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -188,6 +210,8 @@ public class Doctor implements Parcelable {
         dest.writeInt(this.wait);
         dest.writeString(this.lastUpdateTime);
         dest.writeInt(this.flag);
+        dest.writeString(this.uid);
+        dest.writeString(this.img);
     }
 
     public Doctor() {
@@ -206,6 +230,8 @@ public class Doctor implements Parcelable {
         this.wait = in.readInt();
         this.lastUpdateTime = in.readString();
         this.flag = in.readInt();
+        this.uid = in.readString();
+        this.img = in.readString();
     }
 
     public static final Creator<Doctor> CREATOR = new Creator<Doctor>() {

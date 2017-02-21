@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
+import com.mm.kyys.Model.Doctor;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
@@ -29,7 +31,9 @@ public class DoctorDetialActivity extends Activity {
     private CircularImage iv_photo;
     private Boolean canTakeVideo;
     private XlTitle title;
+    private TextView tv_doctor_name,tv_doctor_identify,tv_doctor_intrduction;
     private int identity;
+    private Doctor doctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +91,19 @@ public class DoctorDetialActivity extends Activity {
         btn_gh = (Button) findViewById(R.id.doctordetial_btn_gh);
         iv_photo = (CircularImage) findViewById(R.id.doctordetial_iv_photo);
         title = (XlTitle) findViewById(R.id.doctordetial_title);
+        tv_doctor_name = (TextView) findViewById(R.id.doctordetial_tv_name);
+        tv_doctor_identify = (TextView) findViewById(R.id.doctordetial_tv_identify);
+        tv_doctor_intrduction = (TextView) findViewById(R.id.doctordetial_tv_intrduction);
 
     }
 
     private void inevent(){
 
+        Bundle bundle = getIntent().getExtras();
+        doctor = bundle.getParcelable("doctor");
+        tv_doctor_name.setText(doctor.getName());
+        tv_doctor_identify.setText(doctor.getType());
+        tv_doctor_intrduction.setText(doctor.getAdvantage());
 
         title.setText(getResources().getString(R.string.yishengweizhan));
         title.setleftText(R.string.fanhui);
@@ -121,17 +133,8 @@ public class DoctorDetialActivity extends Activity {
             public void onClick(View v) {
                 if (canTakeVideo||identity==1){
                     btn_gh.setText(R.string.lianxiyisheng);
-                    //String username = AllData.getInstance().getUserName();
-                    String username = SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getUserID();
-                    String tousername = "";
-                    String touserNick = "";
-                    if (username.equals("x")) {
-                        tousername = "l";
-                        touserNick = "L";
-                    }else{
-                        tousername = "x";
-                        touserNick = "X";
-                    }
+
+                    String tousername = doctor.getUid();
 
                     Intent intent = new Intent(oThis, ChatActivity.class);
                     intent.putExtra(EaseConstant.EXTRA_USER_ID,tousername);

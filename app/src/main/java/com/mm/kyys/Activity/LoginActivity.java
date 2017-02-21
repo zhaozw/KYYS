@@ -20,6 +20,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.mm.kyys.DB.DBManager;
 import com.mm.kyys.DB.DBopenHelper;
+import com.mm.kyys.Model.HxUserInfo;
 import com.mm.kyys.Model.Section;
 import com.mm.kyys.Model.User;
 import com.mm.kyys.R;
@@ -34,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -178,8 +180,11 @@ public class LoginActivity extends Activity {
                         case 200:
                             SharedPreferencesManager.getIntance(oThis).setUserInfo(oThis,Resp);
                             user = JSON.parseObject(Resp,User.class);
-                            Log.e("xl", "用户头像："+ SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getImg());
                             SharedPreferencesManager.getIntance(oThis).setUserHasLogin(true);
+                            HxUserInfo userInfo = new HxUserInfo(user.getUserID(),user.getUserName(),user.getImg());
+                            String json_str = JSON.toJSONString(userInfo);
+                            Log.e("xl", "保存用户环信信息"+json_str.toString());
+                            SharedPreferencesManager.getIntance(oThis).setUserNickPicHxID(user.getUserID(),json_str.toString(),oThis);
                             AllData.getInstance().setUserName(et_username.getText().toString().trim());
                             List<Section> list = DBManager.getInstance().QuerySection(0,"0",database_readable);
                             Log.e("xl", "DATA LIST:"+list.size());

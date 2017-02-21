@@ -84,12 +84,12 @@
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\drawable-xhdpi\\em_chat_file_normal.png"
     },
     {
-        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_unread_dot.9.png",
-        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\drawable-xhdpi\\ease_unread_dot.9.png"
-    },
-    {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_default_avatar.png",
         "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\drawable-xhdpi\\ease_default_avatar.png"
+    },
+    {
+        "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_unread_dot.9.png",
+        "source": "E:\\workspace\\KYYS\\easeui\\src\\main\\res\\drawable-xhdpi\\ease_unread_dot.9.png"
     },
     {
         "merged": "E:\\workspace\\KYYS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_open_icon.png",
