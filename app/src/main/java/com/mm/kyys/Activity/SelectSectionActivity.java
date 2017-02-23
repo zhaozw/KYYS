@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.telephony.SubscriptionInfo;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import com.mm.kyys.Model.Section;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.MyUtil;
 import com.mm.kyys.Util.RestClient;
+import com.mm.kyys.Util.ScreenInfo;
 import com.mm.kyys.Wighet.XlTitle;
 
 import org.json.JSONException;
@@ -91,6 +93,19 @@ public class SelectSectionActivity extends BaseActivity{
         inevent();
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+            int[] arr_all = ScreenInfo.getIntance(oThis).getAllScreenSize();
+            int[] arr_window = ScreenInfo.getIntance(oThis).getWindowSize();
+            int[] arr_view = ScreenInfo.getIntance(oThis).getViewSize(R.id.registerbyself_rv_section_child);
+
+            Log.e("xl", "全屏  x:"+arr_all[0]+"--"+arr_all[1]);
+            Log.e("xl", "window  x:"+arr_window[0]+"--"+arr_window[1]);
+            Log.e("xl", "view  x:"+arr_view[0]+"--"+arr_view[1]);
+        }
+    }
 
     private void init() {
 
@@ -127,6 +142,9 @@ public class SelectSectionActivity extends BaseActivity{
         rv_section_parent.setLayoutManager(llm_section_parent);
         rv_section_child.setLayoutManager(llm_section_child);
 
+        final LinearLayout.LayoutParams lp  = (LinearLayout.LayoutParams) rv_section_child.getLayoutParams();
+
+
         //从数据库获取数据
         getDate_Parent();
         getDate_child(list_section_parent.get(0).getDid());
@@ -139,6 +157,10 @@ public class SelectSectionActivity extends BaseActivity{
         sectionAdapter_parent.setOnSectionItemClickListener(new SectionAdapter.OnSectionItemClickListener() {
             @Override
             public void onClick(int position, TextView tv) {
+                float[] arr = MyUtil.getIntance().screenPix(oThis);
+                Log.e("xl", "宽"+arr[0]);
+                Log.e("xl", "高"+arr[1]);
+
                 FreshFristMenuUi(position);
                 //获取点击相的子分类
                 getDate_child(list_section_parent.get(position).getDid());
@@ -148,7 +170,23 @@ public class SelectSectionActivity extends BaseActivity{
                 sectionAdapter_child.setOnSectionItemClickListener(new SectionAdapter.OnSectionItemClickListener() {
                     @Override
                     public void onClick(int position, TextView tv) {
+                        int[] location = new int[2];
+                        tv.getLocationOnScreen(location);
+                        int x = location[0];
+                        int y = location[1];
+                        Log.e("xl", "x:"+x+"--y:"+y);
+                        Log.e("xl", "left:"+tv.getLeft()+"--right:"+tv.getRight()+"--top:"+tv.getTop()+"--bottom:"+tv.getBottom());
+                        //测量科室二级分类的位置
+                        Log.e("xl","PaddingTop:"+llm_section_child.getPaddingTop());
+                        View view = llm_section_child.getChildAt(0);
+                        if (view!=null){
+                            Log.e("xl", "0 is show："+view.isShown());
+                        }
+
+                        Log.e("xl", "height:"+view.getHeight());
+                        Log.e("xl", "width:"+view.getWidth());
                         //科室二级分类项点击监听
+                        llm_section_child.scrollToPositionWithOffset(position,0);
                         FreshSecondMenuUi(position);
                         Section section = list_section_child.get(position);
                         Bundle bundle = new Bundle();

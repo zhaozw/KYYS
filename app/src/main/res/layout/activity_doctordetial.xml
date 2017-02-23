@@ -54,6 +54,13 @@
             android:layout_gravity="center"
             android:text="@string/guahao"
             />
+        <Button
+            android:id="@+id/doctordetial_btn_yy"
+            android:layout_height="30dp"
+            style="@style/button_style"
+            android:layout_gravity="center"
+            android:text="@string/yuyue"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"

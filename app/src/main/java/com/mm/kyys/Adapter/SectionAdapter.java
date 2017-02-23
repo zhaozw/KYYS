@@ -27,7 +27,6 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
     private Activity oThis;
     private SectionAdapter.OnSectionItemClickListener onItemClickListener;
     private List<Section> list_data = new ArrayList();
-
     private List<Boolean> list_ischeck = new ArrayList<Boolean>();
 
 
@@ -54,43 +53,19 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        holder.tv_section.setText(list_data.get(position).getName());
-        if (list_ischeck.size()!=0){
-            if (list_ischeck.get(position)){
-                holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.colorGreen));
-                holder.tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_green_24dp);
-            }else{
-                holder.tv_section.setTextColor(oThis.getResources().getColor(R.color.black_deep));
-                holder.tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_white_24dp);
-            }
-            if (onItemClickListener != null){
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        onItemClickListener.onClick(position,holder.tv_section);
-
-                    }
-                });
-                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        onItemClickListener.onLongClick(position);
-                        return false;
-                    }
-                });
-            }
-        }
+        MyViewHolder holder1 = holder;
+        holder1.setDate(position);
 
     }
-
 
     @Override
     public int getItemCount() {
         return list_data.size();
     }
+
+
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -101,7 +76,40 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
             super(itemView);
             tv_section = (TextView) itemView.findViewById(R.id.item_section_tv);
             tv_arrow = (TextView) itemView.findViewById(R.id.item_section_arrow);
+        }
 
+        public void setDate(final int position){
+
+            tv_section.setText(list_data.get(position).getName());
+            //点击Item改变颜色
+            if (list_ischeck.size()!=0){
+                if (list_ischeck.get(position)){
+                    tv_section.setTextColor(oThis.getResources().getColor(R.color.colorGreen));
+                    tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_green_24dp);
+                }else{
+                    tv_section.setTextColor(oThis.getResources().getColor(R.color.black_deep));
+                    tv_arrow.setBackgroundResource(R.drawable.ic_keyboard_arrow_right_white_24dp);
+                }
+                if (onItemClickListener != null){
+                    //item点击事件
+                    itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onItemClickListener.onClick(position,tv_section);
+                        }
+                    });
+                    //item长按事件
+                    itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            onItemClickListener.onLongClick(position);
+                            return false;
+                        }
+                    });
+                }
+            }
         }
     }
+
+
 }

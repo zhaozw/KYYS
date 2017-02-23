@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.baidu.mapapi.map.Text;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.mm.kyys.Activity.LoginActivity;
+import com.mm.kyys.Activity.MyBookActivity;
 import com.mm.kyys.Activity.NoticActivity;
 import com.mm.kyys.Model.User;
 import com.mm.kyys.MyHelper;
@@ -41,7 +43,7 @@ import java.util.Map;
  * Created by sexyXu on 2016/10/25.
  */
 
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment implements View.OnClickListener{
 
 
     private Button btn_logout;
@@ -49,6 +51,7 @@ public class MineFragment extends BaseFragment {
     private CircularImage ci_user_photo;
     private TextView tv_user_name;
     private TextView tv_user_iden;
+    private LinearLayout layout_book;
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -77,6 +80,25 @@ public class MineFragment extends BaseFragment {
         fresh();
     }
 
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.mine_btn_logout:
+                Logout();
+                break;
+            case R.id.mine_btn_message:
+                MyUtil.getIntance().ToActivity(getActivity(), NoticActivity.class,true,null);
+                getActivity().findViewById(R.id.mainactivity_dot).setVisibility(View.GONE);
+                break;
+            case R.id.mine_layout_book:
+                MyUtil.getIntance().ToActivity(getActivity(), MyBookActivity.class,true,null);
+                break;
+        }
+
+
+    }
+
     private void init(){
         btn_logout = (Button) getView().findViewById(R.id.mine_btn_logout);
         tv_message = (TextView) getView().findViewById(R.id.mine_btn_message);
@@ -87,35 +109,20 @@ public class MineFragment extends BaseFragment {
         tv_user_name = (TextView) getView().findViewById(R.id.mine_user_name);
         tv_user_iden = (TextView) getView().findViewById(R.id.mine_user_iden);
 
+        layout_book = (LinearLayout) getView().findViewById(R.id.mine_layout_book);
+
+        btn_logout.setOnClickListener(this);
+        tv_message.setOnClickListener(this);
+        layout_book.setOnClickListener(this);
     }
 
     private void event(){
 
-        /*if (SharedPreferencesManager.getIntance(getActivity()).getUserInfo(getActivity()).getIdentity()!=2){
-            tv_message.setVisibility(View.VISIBLE);
-        }else{
-            tv_message.setVisibility(View.GONE);
-        }*/
-
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logout();
-            }
-        });
-
-        tv_message.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MyUtil.getIntance().ToActivity(getActivity(), NoticActivity.class,true,null);
-                getActivity().findViewById(R.id.mainactivity_dot).setVisibility(View.GONE);
-            }
-        });
         User user = SharedPreferencesManager.getIntance(getContext()).getUserInfo(getActivity());
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_launcher) //设置图片在下载期间显示的图片
-                .showImageForEmptyUri(R.drawable.ic_launcher) //设置图片Uri为空或是错误的时候显示的图片 
-                .showImageOnFail(R.drawable.ic_launcher) //设置图片加载/解码过程中错误时候显示的图片
+                .showImageOnLoading(R.mipmap.em_icon_account) //设置图片在下载期间显示的图片
+                .showImageForEmptyUri(R.mipmap.em_icon_account) //设置图片Uri为空或是错误的时候显示的图片 
+                .showImageOnFail(R.mipmap.em_icon_account) //设置图片加载/解码过程中错误时候显示的图片
                 .build();
         Log.e("xl", "显示头像："+user.getImg().toString());
         ImageLoader.getInstance().displayImage(user.getImg(),ci_user_photo,options);
@@ -147,5 +154,6 @@ public class MineFragment extends BaseFragment {
         }
 
     }
+
 
 }

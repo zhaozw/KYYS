@@ -90,4 +90,7 @@
     <string name="nsrdmmbfhyq">您输入的密码不符合要求</string>
     <string name="xuanzekeshi">选择科室</string>
     <string name="zhucechenggong">注册成功</string>
+    <string name="wodeyuyue">我的预约</string>
+    <string name="yuyue">预约</string>
+    <string name="yuyuechenggong">预约成功</string>
 </resources>

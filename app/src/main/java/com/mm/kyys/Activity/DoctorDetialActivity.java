@@ -10,16 +10,25 @@ import android.widget.TextView;
 
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.mm.kyys.Model.Doctor;
 import com.mm.kyys.Model.User;
 import com.mm.kyys.R;
 import com.mm.kyys.Util.AllData;
 import com.mm.kyys.Util.MyUtil;
+import com.mm.kyys.Util.RestClient;
 import com.mm.kyys.Util.SharedPreferencesManager;
 import com.mm.kyys.View.CircularImage;
+import com.mm.kyys.View.SweetAlertDialog;
 import com.mm.kyys.Wighet.XlTitle;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by 27740 on 2017/1/16.
@@ -28,7 +37,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 public class DoctorDetialActivity extends Activity {
 
     private Activity oThis;
-    private Button btn_gh;
+    private Button btn_gh,btn_yy;
     private CircularImage iv_photo;
     private Boolean canTakeVideo = false;
     private XlTitle title;
@@ -91,6 +100,8 @@ public class DoctorDetialActivity extends Activity {
         oThis = this;
 
         btn_gh = (Button) findViewById(R.id.doctordetial_btn_gh);
+        btn_yy = (Button) findViewById(R.id.doctordetial_btn_yy);
+
         iv_photo = (CircularImage) findViewById(R.id.doctordetial_iv_photo);
         title = (XlTitle) findViewById(R.id.doctordetial_title);
         tv_doctor_name = (TextView) findViewById(R.id.doctordetial_tv_name);
@@ -157,5 +168,41 @@ public class DoctorDetialActivity extends Activity {
 
             }
         });
+
+        btn_yy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toBook();
+            }
+        });
+
     }
+
+    private void toBook(){
+        //dcid=123&userID=123
+        RequestParams params = new RequestParams();
+        params.add("dcid",doctor.getDcid());
+        params.add("userID",SharedPreferencesManager.getIntance(oThis).getUserInfo(oThis).getUserID());
+        RestClient.post("in_Book.ashx",params,new JsonHttpResponseHandler(){
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("xl", "预约失败信息："+errorResponse.toString());
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                Log.e("xl", "预约成功信息："+response.toString());
+                SweetAlertDialog dialog = new SweetAlertDialog(oThis,SweetAlertDialog.SUCCESS_TYPE);
+                dialog.setContentText(getResources().getString(R.string.yuyuechenggong));
+                dialog.show();
+            }
+        });
+
+
+
+    }
+
 }

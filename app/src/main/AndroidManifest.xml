@@ -4,7 +4,7 @@
     package="com.mm.kyys">
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="13"
         android:targetSdkVersion="24"
         tools:overrideLibrary="com.easemob.redpacketui"
         />
@@ -111,6 +111,14 @@
         <!--挂号-->
         <activity
             android:name=".Activity.PayActivity"
+            android:screenOrientation="portrait"/>
+        <!--我的预约-->
+        <activity
+            android:name=".Activity.MyBookActivity"
+            android:screenOrientation="portrait"/>
+        <!--预约-->
+        <activity
+            android:name=".Activity.BookActivity"
             android:screenOrientation="portrait"/>
         <!-- 显示下载大图页面 -->
         <activity
